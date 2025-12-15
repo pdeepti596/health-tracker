@@ -1,8 +1,8 @@
 from core.responses import send_json, send_404
 from core.request import parse_json_body
 from services.activity_sevice import (
-    activity_get_all,
-    activity_get_one,
+    service_get_all_activity,
+    service_get_one_activity,
     activity_create,
     activity_update,
     activity_delete,

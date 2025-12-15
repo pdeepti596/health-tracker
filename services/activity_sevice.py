@@ -8,7 +8,7 @@ from database.queries import (
     db_activity_delete
 )
 
-def service_get_all_activity():
+def service_activity_get_all():
     return db_activity_get_all()
 
 def service_get_activity(activity_id):

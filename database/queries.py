@@ -3,7 +3,7 @@ from .connection import get_connection
 
 #users(auth)-login, register, update, delete
 
-def db_register_user(data):
+def db_auth_register(data):
     conn = get_connection()
     now = datetime.now().isoformat()
 
@@ -15,9 +15,9 @@ def db_register_user(data):
     conn.commit()
     new_id = cur.lastrowid
     conn.clsose()
-    return db_register_user(new_id)
+    return db_auth_register(new_id)
 
-def db_login_user(email, password):
+def db_auth_login(email, password):
     conn = get_connection()
     row = conn.execute("""
          SELECT * FROM users WHERE email=? AND password=?
@@ -31,7 +31,7 @@ def db_get_user(user_id):
     conn.close()
     return dict(row) if row else None
 
-def db_update_user(user_id, data):
+def db_auth_update(user_id, data):
     conn = get_connection()
     now = datetime.now().isoformat()
 
@@ -40,17 +40,17 @@ def db_update_user(user_id, data):
         WHERE id=?
         """, (data["name"], data["email"], data["password"], now, user_id))
 
-        conn.commit()
-        conn.close()
-        return db_get_user(user_id)
+    conn.commit()
+    conn.close()
+    return db_get_user(user_id)
 
-def db_delete_user(id):
+def db_auth_delete(id):
     user = db_get_user(user_id)
     if not user:
         return None
 
     conn = get_connection()
-    conn.execute("DELETE FROM users WHERE id=?", (user_id))
+    conn.execute("DELETE FROM users WHERE id=?", (user_id,))
     conn.commit()
     conn.close()
     return user
@@ -69,7 +69,165 @@ def db_create_user_input(data):
     conn.commit()
     new_id =cur.lastrowid
     conn.close()
-    return db_get_user_input(new_id)
+    return db_get_user_inputs(new_id)
+
+def db_get_user_inputs(input_id):
+    conn = get_connection()
+    row = conn.execute("SELECT * FROM user_input WHERE  id=?", (input_id,)).fetchone()
+    conn.close()
+    return dict(row) if row else None
+
+def db_get_all_user_inputs(user_id):
+    conn = get_connection()
+    rows = conn.execute("SELECT * FROM user_input WHERE user_id=? ORDER BY id DESC", (user_id)).fetchall()
+    conn.close()
+    return [dict(r) for r in rows]
+
+def db_update_user_input(input_id, data):
+    conn = get_connection()
+    now = datetime.now().isoformat()
+
+    conn.execute("""
+        UPDATE user_input SET age=?, height=?, weight=?, gender=?, updated_at=?
+        WHERE id=?
+                 """, (data["age"], data["weight"], data["gender"], now, input_id))             
+    conn.commit()
+    conn.close()
+    return db_get_user_inputs(input_id)
+
+def db_delete_user_input(input_id):
+    old = db_get_user_inputs(input_id)
+    if not old:
+        return None
+    
+    conn = get_connection()
+    conn.execute("DELETE FROM user_input WHERE id=?", (input_id))
+    conn.close()
+    return old
+
+#daily activity crud (water, steps, calories)
+
+def db_create_activity(data):
+    conn = get_connection()
+    now = datetime.now().isoformat()
+
+    cur = conn.execute("""
+        INSERT INTO daily_activity (user_id, water, steps, calories, created_at)
+        VALUES (?, ?, ?, ?, ?)
+    """, (data["user_id"], data["water"], data["steps"], data["calories"], now))
+
+    conn.commit()
+    new_id = cur.lastrowid
+    conn.close()
+    return db_get_activity(new_id)
+
+
+def db_get_activity(activity_id):
+    conn = get_connection()
+    row = conn.execute("SELECT * FROM daily_activity WHERE id=?", (activity_id,)).fetchone()
+    conn.close()
+    return dict(row) if row else None
+
+
+def db_get_all_activities(user_id):
+    conn = get_connection()
+    rows = conn.execute("""
+        SELECT * FROM daily_activity 
+        WHERE user_id=?
+        ORDER BY id DESC
+    """, (user_id,)).fetchall()
+    conn.close()
+    return [dict(r) for r in rows]
+
+
+def db_update_activity(activity_id, data):
+    conn = get_connection()
+    now = datetime.now().isoformat()
+
+    conn.execute("""
+        UPDATE daily_activity
+        SET water=?, steps=?, calories=?, updated_at=?
+        WHERE id=?
+    """, (data["water"], data["steps"], data["calories"], now, activity_id))
+
+    conn.commit()
+    conn.close()
+    return db_get_activity(activity_id)
+
+
+def db_delete_activity(activity_id):
+    old = db_get_activity(activity_id)
+    if not old:
+        return None
+
+    conn = get_connection()
+    conn.execute("DELETE FROM daily_activity WHERE id=?", (activity_id,))
+    conn.commit()
+    conn.close()
+    return old
+
+#medical record crud (previous, current, genetic)
+def db_create_medical(data):
+    conn = get_connection()
+    now = datetime.now().isoformat()
+
+    cur = conn.execute("""
+        INSERT INTO medical_records (user_id, previous, current, genetic, created_at)
+        VALUES (?, ?, ?, ?, ?)
+    """, (data["user_id"], data["previous"], data["current"], data["genetic"], now))
+
+    conn.commit()
+    new_id = cur.lastrowid
+    conn.close()
+    return db_get_medical(new_id)
+
+
+def db_get_medical(med_id):
+    conn = get_connection()
+    row = conn.execute("SELECT * FROM medical_records WHERE id=?", (med_id,)).fetchone()
+    conn.close()
+    return dict(row) if row else None
+
+
+def db_get_all_medicals(user_id):
+    conn = get_connection()
+    rows = conn.execute("""
+        SELECT * FROM medical_records WHERE user_id=? ORDER BY id DESC
+    """, (user_id,)).fetchall()
+    conn.close()
+    return [dict(r) for r in rows]
+
+
+def db_update_medical(med_id, data):
+    conn = get_connection()
+    now = datetime.now().isoformat()
+
+    conn.execute("""
+        UPDATE medical_records
+        SET previous=?, current=?, genetic=?, updated_at=?
+        WHERE id=?
+    """, (data["previous"], data["current"], data["genetic"], now, med_id))
+
+    conn.commit()
+    conn.close()
+    return db_get_medical(med_id)
+
+
+def db_delete_medical(med_id):
+    old = db_get_medical(med_id)
+    if not old:
+        return None
+
+    conn = get_connection()
+    conn.execute("DELETE FROM medical_records WHERE id=?", (med_id,))
+    conn.commit()
+    conn.close()
+    return old
+                 
+
+
+
+
 
     
 

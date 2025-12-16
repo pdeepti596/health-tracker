@@ -9,8 +9,8 @@ from urllib.parse import urlparse
 from controllers.user import (
     
     get_all_users,
-    # get_user,
-    # create_user,
+    get_user,
+    create_user,
     # update_user,
     # delete_user
 
@@ -75,13 +75,16 @@ class HealthRouter(BaseHTTPRequestHandler):
 
 
         # USER PERSONAL DETAILS
-        if path == "/api/user/":
+        if path == "/api/users":
             return get_all_users(self)
         
         
-        # if path.startswith("/api/user/"):
-        #     user_id = int(path.split("/")[-1])
-        #     return get_user(self, user_id)
+        if path.startswith("/api/users/"):
+            user_id = int(path.split("/")[-1])
+            return get_user(self, user_id)
+        
+        return send_404(self)
+        
 
         # DAILY ACTIVITY
         # if path == "/api/activity":
@@ -91,18 +94,19 @@ class HealthRouter(BaseHTTPRequestHandler):
         # if path == "/api/medical":
         #     return get_medical_records(self)
 
-        return send_404(self)
 
 
 
     # ------------------------------------
     # CREATE (POST)
     # ------------------------------------
-    # def do_POST(self):
+    def do_POST(self):
 
-    #     # USER DETAILS
-    #     if self.path == "/api/user/":
-    #         return create_user(self)
+        # USER DETAILS
+        if self.path == "/api/users/":
+            return create_user(self)
+        
+        return send_404(self)
 
     #     # # ACTIVITY
     #     # if self.path == "/api/activity":
@@ -112,7 +116,6 @@ class HealthRouter(BaseHTTPRequestHandler):
     #     # if self.path == "/api/medical":
     #     #     return add_medical_record(self)
 
-    #     return send_404(self)
 
 
 
@@ -120,7 +123,7 @@ class HealthRouter(BaseHTTPRequestHandler):
     # UPDATE (PUT)
     # ------------------------------------
     # def do_PUT(self):
-    #     if self.path.startswith("/api/user/"):
+    #     if self.path.startswith("/api/users/"):
     #         user_id = int(self.path.split("/")[-1])
     #         return update_user(self, user_id)
     #     return send_404(self)

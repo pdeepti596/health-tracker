@@ -11,7 +11,7 @@ def send_json(handler, status, data):
     - medical record
     """
 
-    handler.send_responses(status)
+    handler.send_response(status)
     add_cors_headers(handler)
     handler.send_header("Content-Type", "application/json")
     handler.end_headers()
@@ -26,7 +26,7 @@ def send_html(handler, status, html):
     send html content(if needed)
     """
 
-    handler.send_responses(status)
+    handler.send_response(status)
     add_cors_headers(handler)
     handler.send_header("Content-Type", "text/html")
     handler.end_headers()
@@ -38,12 +38,12 @@ def send_404(handler):
     default 404 not found response.
     """
 
-    handler.send_responses(404)
+    handler.send_response(404)
     add_cors_headers(handler)
     handler.send_header("Cotent-Type", "text/html")
     handler.end_headers()
 
-    handler.wfile.write(b"<h1>404 - Resource Not Found</h1>")
+    handler.wfile.write(b"<h1>404 Resource Not Found</h1>")
 
     
 

@@ -25,6 +25,21 @@ def init_database():
             updated_at TEXT
         )
     """)
+    
+##activity table
+
+    conn.execute("""
+CREATE TABLE IF NOT EXISTS user_activity (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER,
+    steps INTEGER,
+    water_intake REAL,
+    calories_burned REAL,
+    created_at TEXT,
+    updated_at TEXT
+)
+""")
+
 
     conn.commit()
     conn.close()

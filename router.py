@@ -15,6 +15,15 @@ from controllers.user import (
 
 )
 
+from controllers.activity import (
+    get_all_activities,
+    get_activity,
+    create_activity, 
+    update_activity,
+    delete_activity
+)
+
+
 
 # from core.static import serve_static
 from core.responses import send_404
@@ -70,9 +79,16 @@ class HealthRouter(BaseHTTPRequestHandler):
         if path.startswith("/api/users/"):
             user_id = int(path.split("/")[-1])
             return get_user(self, user_id)
-        
-        return send_404(self)
 
+        # USER ACTIVITY
+        if path == "/api/activities":
+            return get_all_activities(self)
+
+        if path.startswith("/api/activities/"):
+            activity_id = int(path.split("/")[-1])
+            return get_activity(self, activity_id)
+        else:
+            send_404(self)
 
 
 
@@ -82,6 +98,9 @@ class HealthRouter(BaseHTTPRequestHandler):
     def do_POST(self):
         if self.path.startswith("/api/users"):
             return create_user(self)
+
+        if self.path == "/api/activities":
+            return create_activity(self)
         else:
             send_404(self)
 
@@ -93,12 +112,12 @@ class HealthRouter(BaseHTTPRequestHandler):
         if self.path.startswith("/api/users/"):
             user_id = int(self.path.split("/")[-1])
             return update_user(self, user_id)
+
+        if self.path.startswith("/api/activities/"):
+            activity_id = int(self.path.split("/")[-1])
+            return update_activity(self, activity_id)
         else:
             send_404(self)
-
-   
-
-
 
     # ------------------------------------
     # DELETE (DELETE)
@@ -107,8 +126,13 @@ class HealthRouter(BaseHTTPRequestHandler):
         if self.path.startswith("/api/users/"):
             user_id = int(self.path.split("/")[-1])
             return delete_user(self, user_id)
+        
+        if self.path.startswith("/api/activities/"):
+            activity_id = int(self.path.split("/")[-1])
+            return delete_activity(self, activity_id)
         else:
             send_404(self)
+
 
     # ------------------------------------
     # LOGGER

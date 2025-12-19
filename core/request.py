@@ -1,31 +1,12 @@
+# Handles incoming HTTP request data (reads JSON from the client)
+
 import json
 
 def parse_json_body(handler):
-    """"
-    Reads and parses JSON body from incomig requests.
-    works for all Health Tracker modules:
-    - Sign IN  / Authentication
-    - User Input
-    - Daily Activity Tracking
-    - Medical Records
-    """
-
-    try:
-        length = input(handler.headers.get("Content-Length", 0))
-        if length == 0:
-            return {}
-        
-        raw = handler.rfile.read(length)
-        body = raw.decode("utf-8")
-
-        return json.loads(body)
-    
-    except json.JSONDecodeError:
-
-        return {"error": "Invalid JSON format"}
-    
-    except Exception as e:
-        return {"error": f"Failed to read body: {str(e)}"}
+    """Read and decode JSON from HTTP request body."""
+    length = int(handler.headers.get("Content-Length", 0))
+    raw = handler.rfile.read(length)
+    return json.loads(raw.decode("utf-8"))
     
         
 

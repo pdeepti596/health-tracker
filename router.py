@@ -5,28 +5,16 @@ from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
 
 # # Controllers
-# from controllers.auth import login_user, register_user, update_user, delete_user
 from controllers.user import (
     
     get_all_users,
     get_user,
     create_user,
-    # update_user,
-    # delete_user
+    update_user,
+    delete_user
 
 )
-# from controllers.activity import (
-#     add_activity_record,
-#     get_activity_records,
-#     update_activity_record,
-#     delete_activity_record
-# )
-# from controllers.medical import (
-#     add_medical_record,
-#     get_medical_records,
-#     update_medical_record,
-#     delete_medical_record
-# )
+
 
 # from core.static import serve_static
 from core.responses import send_404
@@ -84,15 +72,6 @@ class HealthRouter(BaseHTTPRequestHandler):
             return get_user(self, user_id)
         
         return send_404(self)
-        
-
-        # DAILY ACTIVITY
-        # if path == "/api/activity":
-        #     return get_activity_records(self)
-
-        # MEDICAL
-        # if path == "/api/medical":
-        #     return get_medical_records(self)
 
 
 
@@ -101,69 +80,35 @@ class HealthRouter(BaseHTTPRequestHandler):
     # CREATE (POST)
     # ------------------------------------
     def do_POST(self):
-
-        # USER DETAILS
-        if self.path == "/api/users/":
+        if self.path.startswith("/api/users"):
             return create_user(self)
-        
-        return send_404(self)
-
-    #     # # ACTIVITY
-    #     # if self.path == "/api/activity":
-    #     #     return add_activity_record(self)
-
-    #     # # MEDICAL
-    #     # if self.path == "/api/medical":
-    #     #     return add_medical_record(self)
-
-
+        else:
+            send_404(self)
 
 
     # ------------------------------------
     # UPDATE (PUT)
     # ------------------------------------
-    # def do_PUT(self):
-    #     if self.path.startswith("/api/users/"):
-    #         user_id = int(self.path.split("/")[-1])
-    #         return update_user(self, user_id)
-    #     return send_404(self)
+    def do_PUT(self):
+        if self.path.startswith("/api/users/"):
+            user_id = int(self.path.split("/")[-1])
+            return update_user(self, user_id)
+        else:
+            send_404(self)
 
-        # # ACTIVITY UPDATE
-        # if path.startswith("/api/activity/"):
-        #     record_id = int(path.split("/")[-1])
-        #     return update_activity_record(self, record_id)
-
-        # # MEDICAL UPDATE
-        # if path.startswith("/api/medical/"):
-        #     record_id = int(path.split("/")[-1])
-        #     return update_medical_record(self, record_id)
-
-        # return send_404(self)
+   
 
 
 
     # ------------------------------------
     # DELETE (DELETE)
     # ------------------------------------
-    # def do_DELETE(self):
-    #     if self.path.startswith("/api/users/"):
-    #         user_id = int(self.path.split("/")[-1])
-    #         return delete_user(self, user_id)
-    #     return send_404(self)
-
-        # # DELETE ACTIVITY
-        # if path.startswith("/api/activity/"):
-        #     record_id = int(path.split("/")[-1])
-        #     return delete_activity_record(self, record_id)
-
-        # # DELETE MEDICAL
-        # if path.startswith("/api/medical/"):
-        #     record_id = int(path.split("/")[-1])
-        #     return delete_medical_record(self, record_id)
-
-        # return send_404(self)
-
-
+    def do_DELETE(self):
+        if self.path.startswith("/api/users/"):
+            user_id = int(self.path.split("/")[-1])
+            return delete_user(self, user_id)
+        else:
+            send_404(self)
 
     # ------------------------------------
     # LOGGER

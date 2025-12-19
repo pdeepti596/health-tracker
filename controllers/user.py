@@ -5,8 +5,8 @@ from services.user_service import (
       service_get_all
     , service_get_one
     , service_create
-    # , service_update
-    # , service_delete 
+    , service_update
+    , service_delete 
 
 )
 
@@ -22,12 +22,12 @@ def create_user(handler):
     new_user = service_create(data)
     return send_json(handler, 201, new_user)
 
-# def update_user(handler, user_id):
-#     data = parse_json_body(handler)
-#     updated = service_update(user_id, data)
-#     return send_json(handler, 200, updated) if updated else send_404(handler)
+def update_user(handler, user_id):
+    data = parse_json_body(handler)
+    updated = service_update(user_id, data)
+    return send_json(handler, 200, updated) if updated else send_404(handler)
 
-# def delete_user(handler, user_id):
-#     deleted = service_delete(user_id)
-#     return send_json(handler, 200, {"deleted": True}) if deleted else send_404(handler)
+def delete_user(handler, user_id):
+    deleted = service_delete(user_id)
+    return send_json(handler, 200, {"message": "User deleted"}) if deleted else send_404(handler)
 

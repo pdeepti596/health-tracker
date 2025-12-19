@@ -24,11 +24,11 @@ curl -X PUT "https://organic-eureka-97r6j56v547jf7w4-8000.app.github.dev/api/use
     "gender": "Female",
     "height": 165,
     "weight": 70
-    
+
   }'
 
 # # E. Delete user
-# curl -X DELETE "https://organic-eureka-97r6j56v547jf7w4-8000.app.github.dev/api/users/1"
+curl -X DELETE "https://organic-eureka-97r6j56v547jf7w4-8000.app.github.dev/api/users/1"
 
 
 

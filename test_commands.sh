@@ -45,10 +45,10 @@ curl -X GET "http://localhost:8000/api/activities/1"
 curl -X POST "https://organic-eureka-97r6j56v547jf7w4-8000.app.github.dev/api/activities" \
   -H "Content-Type: application/json" \
   -d '{
-    "activity_id": 1,
+    "user_id": 1,
     "steps": 5000,
-    "water": 2,
-    "calories": 300
+    "water_intake": 2.5,
+    "calories_burned": 320
   }'
 
 # D. Update activity
@@ -56,13 +56,11 @@ curl -X PUT "https://organic-eureka-97r6j56v547jf7w4-8000.app.github.dev/api/act
   -H "Content-Type: application/json" \
   -d '{
     "steps": 6500,
-    "water": 3,
-    "calories": 350
+    "water_intake": 3,
+    "calories_burned": 350
   }'
 
 # E. Delete activity
 curl -X DELETE "https://organic-eureka-97r6j56v547jf7w4-8000.app.github.dev/api/activities/1"
-
-
 
 

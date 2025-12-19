@@ -19,10 +19,10 @@ def db_create(data):
     conn = get_connection()
     now = datetime.now().isoformat()
     cur = conn.execute("""
-        INSERT INTO user_activity (activity_id, steps, water_intake, calories_burned, created_at)
+        INSERT INTO user_activity (user_id, steps, water_intake, calories_burned, created_at)
         VALUES (?, ?, ?, ?, ?)
     """, (
-        data["activity_id"],
+        data["user_id"],
         data["steps"],
         data["water_intake"],
         data["calories_burned"],
@@ -52,6 +52,11 @@ def db_update(activity_id, data):
     return db_get_one(activity_id)
 
 def db_delete(activity_id):
+    existing = db_get_one(activity_id)
+    if not existing:
+        return None
+
+
     conn = get_connection()
     conn.execute("DELETE FROM user_activity WHERE id=?", (activity_id,))
     conn.commit()

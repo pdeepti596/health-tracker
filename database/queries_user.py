@@ -18,7 +18,7 @@ def db_create(data):
     conn = get_connection()
     now = datetime.now().isoformat()
     cur = conn.execute(
-        "INSERT INTO users (name, age, gender, height, weight, created_at)"
+        "INSERT INTO user_inputs (name, age, gender, height, weight, created_at)"
         "VALUES (?, ?, ?, ?, ?, ?)",
         (
             data["name"], data["age"], data["gender"],
@@ -33,7 +33,7 @@ def db_update(user_id, data):
     conn = get_connection()
     now = datetime.now().isoformat()
     conn.execute("""
-        UPDATE users SET name=?, age=?, gender=?, height=?, weight=?, updated_at=?
+        UPDATE user_inputs SET name=?, age=?, gender=?, height=?, weight=?, updated_at=?
         WHERE id=?
     """, (
         data["name"], data["age"], data["gender"],
@@ -50,7 +50,7 @@ def db_delete(user_id):
         return None
 
     conn = get_connection()
-    conn.execute("DELETE FROM users WHERE id=?", (user_id,))
+    conn.execute("DELETE FROM user_inputs WHERE id=?", (user_id,))
     conn.commit()
     conn.close()
     return existing

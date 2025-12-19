@@ -23,7 +23,13 @@ from controllers.activity import (
     delete_activity
 )
 
-
+from controllers.medical import (
+    get_all_medical,
+    get_medical,
+    create_medical,
+    update_medical,
+    delete_medical
+)
 
 # from core.static import serve_static
 from core.responses import send_404
@@ -87,10 +93,16 @@ class HealthRouter(BaseHTTPRequestHandler):
         if path.startswith("/api/activities/"):
             activity_id = int(path.split("/")[-1])
             return get_activity(self, activity_id)
+
+        # USER MEDICAL INFO
+        if path == "/api/medical":
+            return get_all_medical(self)
+
+        if path.startswith("/api/medical/"):
+            medical_id = int(path.split("/")[-1])
+            return get_medical(self, medical_id)
         else:
             send_404(self)
-
-
 
     # ------------------------------------
     # CREATE (POST)
@@ -101,6 +113,9 @@ class HealthRouter(BaseHTTPRequestHandler):
 
         if self.path == "/api/activities":
             return create_activity(self)
+
+        if self.path == "/api/medical":
+            return create_medical(self)
         else:
             send_404(self)
 
@@ -116,6 +131,10 @@ class HealthRouter(BaseHTTPRequestHandler):
         if self.path.startswith("/api/activities/"):
             activity_id = int(self.path.split("/")[-1])
             return update_activity(self, activity_id)
+
+        if self.path.startswith("/api/medical/"):
+            medical_id = int(self.path.split("/")[-1])
+            return update_medical(self, medical_id)
         else:
             send_404(self)
 
@@ -130,6 +149,10 @@ class HealthRouter(BaseHTTPRequestHandler):
         if self.path.startswith("/api/activities/"):
             activity_id = int(self.path.split("/")[-1])
             return delete_activity(self, activity_id)
+
+        if self.path.startswith("/api/medical/"):
+            medical_id = int(self.path.split("/")[-1])
+            return delete_medical(self, medical_id)
         else:
             send_404(self)
 

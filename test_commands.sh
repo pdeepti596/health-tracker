@@ -32,35 +32,76 @@
 
 
 
+ttps://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/medical/1"
 
 
+##################### DB Observation Via SQLite Web
+# install https://github.com/coleifer/sqlite-web
+# pip install sqlite-web
+# sqlite_web health_tracker.db
 
-# A. Get all activities
-curl -X GET "https://organic-eureka-97r6j56v547jf7w4-8000.app.github.dev/api/activities"
 
-# B. Get One activity
-curl -X GET "http://localhost:8000/api/activities/1"
+# # A. Get all activities
+# curl -X GET "https://organic-eureka-97r6j56v547jf7w4-8000.app.github.dev/api/activities"
 
-# C. Create activity
-curl -X POST "https://organic-eureka-97r6j56v547jf7w4-8000.app.github.dev/api/activities" \
+# # B. Get One activity
+# curl -X GET "http://localhost:8000/api/activities/1"
+
+# # C. Create activity
+# curl -X POST "https://organic-eureka-97r6j56v547jf7w4-8000.app.github.dev/api/activities" \
+#   -H "Content-Type: application/json" \
+#   -d '{
+#     "user_id": 1,
+#     "steps": 5000,
+#     "water_intake": 2.5,
+#     "calories_burned": 320
+#   }'
+
+# # D. Update activity
+# curl -X PUT "https://organic-eureka-97r6j56v547jf7w4-8000.app.github.dev/api/activities/1" \
+#   -H "Content-Type: application/json" \
+#   -d '{
+#     "steps": 6500,
+#     "water_intake": 3,
+#     "calories_burned": 350
+#   }'
+
+# # E. Delete activity
+# curl -X DELETE "https://organic-eureka-97r6j56v547jf7w4-8000.app.github.dev/api/activities/1"
+
+# # A. Get all medical records
+##################### API Observation Via Codespace URL
+##################### API Observation Via Hoppscotch
+##################### API Observation Via CURL
+
+# A. Get All Medical Records
+curl -X GET "https://organic-eureka-97r6j56v547jf7w4-8000.app.github.dev/api/medical"
+
+
+# B. Create Medical Record
+curl -X POST "https://organic-eureka-97r6j56v547jf7w4-8000.app.github.dev/api/medical" \
   -H "Content-Type: application/json" \
   -d '{
-    "user_id": 1,
-    "steps": 5000,
-    "water_intake": 2.5,
-    "calories_burned": 320
+   "user_id": 1,
+   "disease": "Diabetes",
+   "genetic_disease": "Yes",
+   "allergies": "None"
   }'
 
-# D. Update activity
-curl -X PUT "https://organic-eureka-97r6j56v547jf7w4-8000.app.github.dev/api/activities/1" \
+
+# C. Update Medical Record
+curl -X PUT "https://organic-eureka-97r6j56v547jf7w4-8000.app.github.dev/api/medical/1" \
   -H "Content-Type: application/json" \
   -d '{
-    "steps": 6500,
-    "water_intake": 3,
-    "calories_burned": 350
+    "user_id":1,
+    "disease": "Diabetes Type 2",
+    "genetic_disease": "Yes",
+    "allergies":"pollens"
   }'
 
-# E. Delete activity
-curl -X DELETE "https://organic-eureka-97r6j56v547jf7w4-8000.app.github.dev/api/activities/1"
+
+# D. Delete Medical Record
+curl -X DELETE "https://organic-eureka-97r6j56v547jf7w4-8000.app.github.dev/api/medical/1"
+
 
 

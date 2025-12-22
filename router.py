@@ -31,7 +31,7 @@ from controllers.medical import (
     delete_medical
 )
 
-# from core.static import serve_static
+from core.static import serve_static
 from core.responses import send_404
 from core.middleware import add_cors_headers
 
@@ -39,20 +39,19 @@ from core.middleware import add_cors_headers
 # ----------------------------------------
 # UI ROUTES
 # ----------------------------------------
-# FRONTEND_ROUTES = {
-#     "/", "/signin", "/user-input", "/daily-activity", "/medical-records"
-# }
+FRONTEND_ROUTES = {
+    "/", "/home", "/users", "/activity", "/medical"
+}
 
-# def handle_ui_routes(handler, path):
-#     if path in FRONTEND_ROUTES:
-#         serve_static(handler, "frontend/pages/index.html")
-#         return True
+def handle_ui_routes(handler, path):
+    if path in FRONTEND_ROUTES:
+        serve_static(handler, "frontend/pages/index.html")
+        return True
+    if path.startswith("/frontend/"):
+        serve_static(handler, path.lstrip("/"))
+        return True
 
-#     if path.startswith("/frontend/"):
-#         serve_static(handler, path.lstrip("/"))
-#         return True
-
-#     return False
+    return False
 
 
 
@@ -73,8 +72,8 @@ class HealthRouter(BaseHTTPRequestHandler):
     def do_GET(self):
         path = urlparse(self.path).path
 
-        # if handle_ui_routes(self, path):
-        #     return
+        if handle_ui_routes(self, path):
+            return
 
 
         # USER PERSONAL DETAILS

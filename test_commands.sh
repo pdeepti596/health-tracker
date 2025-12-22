@@ -32,8 +32,6 @@
 
 
 
-ttps://improved-xylophone-5gjvv4q7p54v275vv-8000.app.github.dev/medical/1"
-
 
 ##################### DB Observation Via SQLite Web
 # install https://github.com/coleifer/sqlite-web

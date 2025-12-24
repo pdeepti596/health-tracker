@@ -51,6 +51,7 @@ def handle_ui_routes(handler, path):
         serve_static(handler, path.lstrip("/"))
         return True
 
+
     return False
 
 
@@ -75,39 +76,32 @@ class HealthRouter(BaseHTTPRequestHandler):
         if handle_ui_routes(self, path):
             return
 
-
-        # USER PERSONAL DETAILS
         if path == "/api/users":
             return get_all_users(self)
-        
-        
-        if path.startswith("/api/users/"):
-            user_id = int(path.split("/")[-1])
-            return get_user(self, user_id)
 
-        # USER ACTIVITY
+        if path.startswith("/api/users/"):
+            return get_user(self, int(path.split("/")[-1]))
+
         if path == "/api/activities":
             return get_all_activities(self)
 
         if path.startswith("/api/activities/"):
-            activity_id = int(path.split("/")[-1])
-            return get_activity(self, activity_id)
+            return get_activity(self, int(path.split("/")[-1]))
 
-        # USER MEDICAL INFO
         if path == "/api/medical":
             return get_all_medical(self)
 
         if path.startswith("/api/medical/"):
-            medical_id = int(path.split("/")[-1])
-            return get_medical(self, medical_id)
-        else:
-            send_404(self)
+            return get_medical(self, int(path.split("/")[-1]))
+
+        send_404(self)
+
 
     # ------------------------------------
     # CREATE (POST)
     # ------------------------------------
     def do_POST(self):
-        if self.path.startswith("/api/users"):
+        if self.path == "/api/users":
             return create_user(self)
 
         if self.path == "/api/activities":

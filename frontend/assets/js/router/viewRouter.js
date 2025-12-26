@@ -16,7 +16,7 @@ export async function router() {
 
   else if (path === "/users") {
     await loadView("/frontend/pages/users.html");
-    initUserController()
+    initUserController();
   }
 
   // else {

@@ -1,7 +1,8 @@
 // Global app state
 let state = {
   editingId: null,   // which user is being edited
-  users: []       // list of all users
+  users: [] ,      // list of all users
+  activities: []
 };
 
 // Update part of the state

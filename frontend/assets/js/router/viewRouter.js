@@ -1,4 +1,4 @@
-import { initUserController } from "../controllers/userController.js";
+// import { initUserController } from "../controllers/userController.js";
 import { initActivityController } from "../controllers/activityController.js";
 
 // Load a view into #app container
@@ -15,10 +15,10 @@ export async function router() {
     await loadView("/frontend/pages/home.html");
   }
 
-  else if (path === "/users") {
-    await loadView("/frontend/pages/users.html");
-    initUserController();
-  }
+  // else if (path === "/users") {
+  //   await loadView("/frontend/pages/users.html");
+  //   initUserController();
+  // }
 
     else if (path === "/activities") {
     await loadView("/frontend/pages/activities.html");

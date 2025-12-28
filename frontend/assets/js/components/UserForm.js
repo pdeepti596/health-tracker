@@ -6,7 +6,7 @@ export function resetForm() {
   $("userForm").reset();
 
   // Change the submit button text back to "Add User"
-  $("submitBtn").textContent = "Add User";
+  $("submitBtn").textContent = "Save User";
 
   // Hide the "Cancel" button, as we are no longer in 'edit' mode
   $("cancelBtn").style.display = "none";
@@ -17,9 +17,9 @@ export function fillForm(user) {
   // Fill each input field with the corresponding property from the student data
   $("name").value = user.name;
   $("age").value = user.age;
-  $("gender").value = user.gender;
   $("height").value = user.height;
   $("weight").value = user.weight;
+  $("gender").value = user.gender;
 
 
   // Change the submit button text to "Update Student"

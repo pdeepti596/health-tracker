@@ -29,9 +29,9 @@ export function initUserController() {
     const data = {
       name: $("name").value.trim(),   // Get name value, remove whitespace
       age: $("age").value.trim(), // Get age value
-      gender: $("gender").value.trim(), // Get gender value
       height: $("height").value.trim() ,   // Get height value
-      weight: $("weight").value.trim()    // Get weight value
+      weight: $("weight").value.trim() ,   // Get weight value
+      gender: $("gender").value.trim(), // Get gender value
 
     };
 

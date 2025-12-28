@@ -78,7 +78,6 @@ export async function loadActivities() {
   table.style.display = "block";
 }
 
-
 // Create a new student
 export async function createNewActivity(data) {
   const res = await apiCreate(data);

@@ -6,7 +6,7 @@ export function resetForm() {
   $("activityForm").reset();
 
   // Change the submit button text back to "Add Student"
-  $("submitBtn").textContent = "Add Activity";
+  $("submitBtn").textContent = "Save Activity";
 
   // Hide the "Cancel" button, as we are no longer in 'edit' mode
   $("cancelBtn").style.display = "none";

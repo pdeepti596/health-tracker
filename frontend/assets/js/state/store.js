@@ -2,7 +2,8 @@
 let state = {
   editingId: null,   // which user is being edited
   users: [] ,      // list of all users
-  activities: []
+  activities: [],
+  medical: []
 };
 
 // Update part of the state

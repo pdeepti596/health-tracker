@@ -1,55 +1,95 @@
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Health Tracker | Home</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3135/3135755.png">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Project CSS -->
+  <link rel="stylesheet" href="/frontend/assets/css/style.css">
+
+  <style>
+    body {
+      font-family: "Outfit", sans-serif;
+      letter-spacing: 0.3px;
+    }
+  </style>
 </head>
-<body>
-    <!-- <h1>Home Page</h1> -->
-    <div class="max-w-3xl mx-auto p-8">
-  <div class="text-center mb-10">
-    <h1 class="text-4xl font-extrabold drop-shadow home-title">
-      🩺 Health Tracker
+
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+  <!-- Main Content -->
+  <main class="flex-grow flex flex-col items-center justify-center text-center">
+
+    <!-- Title -->
+    <h1 class="text-4xl font-bold flex items-center gap-3">
+      <i class="fa-solid fa-stethoscope text-purple-600"></i>
+      Health Tracker
     </h1>
-    <p class="text-gray-600 mt-3 text-lg">
+
+    <p class="text-gray-600 mt-3">
       Track Users, Daily Activities & Medical Records in one place.
     </p>
-  </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- Cards -->
+    <div class="mt-14 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl">
 
-    <!-- Users Card -->
-    <a href="/users" data-link
-      class="group block bg-white shadow-lg rounded-xl border border-gray-200 hover:shadow-2xl hover:scale-[1.02] transition p-6 text-center">
-      <div class="text-green-600 text-4xl mb-3">
-        <i class="fa-solid fa-user"></i>
+      <!-- Users -->
+      <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-lg transition">
+        <i class="fa-solid fa-user text-green-600 text-4xl mb-4"></i>
+        <h2 class="text-xl font-semibold mb-2">Users</h2>
+        <p class="text-gray-500 mb-4">
+          Manage user profiles & details
+        </p>
+        <a href="/users" class="text-green-600 font-medium hover:underline">
+          Go →
+        </a>
       </div>
-      <h2 class="text-xl font-semibold text-gray-800 mb-1">Users</h2>
-      <p class="text-gray-500 text-sm">Manage user profiles & details</p>
-    </a>
 
-    <!-- Activities Card -->
-    <a href="/activities" data-link
-      class="group block bg-white shadow-lg rounded-xl border border-gray-200 hover:shadow-2xl hover:scale-[1.02] transition p-6 text-center">
-      <div class="text-blue-600 text-4xl mb-3">
-        <i class="fa-solid fa-person-running"></i>
+      <!-- Activities -->
+      <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-lg transition">
+        <i class="fa-solid fa-person-running text-blue-600 text-4xl mb-4"></i>
+        <h2 class="text-xl font-semibold mb-2">Activities</h2>
+        <p class="text-gray-500 mb-4">
+          Track steps, water & calories
+        </p>
+        <a href="/activities" class="text-blue-600 font-medium hover:underline">
+          Go →
+        </a>
       </div>
-      <h2 class="text-xl font-semibold text-gray-800 mb-1">Activities</h2>
-      <p class="text-gray-500 text-sm">Track steps, water & calories</p>
-    </a>
 
-    <!-- Medical Card -->
-    <a href="/medical" data-link
-      class="group block bg-white shadow-lg rounded-xl border border-gray-200 hover:shadow-2xl hover:scale-[1.02] transition p-6 text-center">
-      <div class="text-red-600 text-4xl mb-3">
-        <i class="fa-solid fa-notes-medical"></i>
+      <!-- Medical -->
+      <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-lg transition">
+        <i class="fa-solid fa-notes-medical text-red-600 text-4xl mb-4"></i>
+        <h2 class="text-xl font-semibold mb-2">Medical Records</h2>
+        <p class="text-gray-500 mb-4">
+          View & update medical history
+        </p>
+        <a href="/medical" class="text-red-600 font-medium hover:underline">
+          Go →
+        </a>
       </div>
-      <h2 class="text-xl font-semibold text-gray-800 mb-1">Medical Records</h2>
-      <p class="text-gray-500 text-sm">View & update medical history</p>
-    </a>
 
-  </div>
-</div>
+    </div>
+  </main>
+
 </body>
 </html>

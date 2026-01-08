@@ -46,7 +46,7 @@ class TestApiSmoke(unittest.TestCase):
     def test_api_health_tracker_returns_200(self):
         """
         This test checks one thing:
-        - When we call /api/health_tracker, the server responds correctly
+        - When we call /api/health-tracker, the server responds correctly
         """
 
         # Build the API URL using the test server port

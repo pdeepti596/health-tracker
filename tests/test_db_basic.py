@@ -19,7 +19,7 @@ import os
 
 class TestDatabaseBasics(unittest.TestCase):
 
-    def test_users_db_exists(self):
+    def test_health_tracker_db_exists(self):
         """
         Check that the database file is present in the project.
 
@@ -30,8 +30,8 @@ class TestDatabaseBasics(unittest.TestCase):
 
         # Check: does 'users.db' file exist?
         self.assertTrue(
-            os.path.exists("users.db"),
-            "users.db file is missing"
+            os.path.exists("health_tracker.db"),
+            "health_tracker.db file is missing"
         )
 
     def test_can_connect_and_list_tables(self):
@@ -42,7 +42,7 @@ class TestDatabaseBasics(unittest.TestCase):
         """
 
         # Open a connection to the SQLite database
-        conn = sqlite3.connect("users.db")
+        conn = sqlite3.connect("health_tracker.db")
 
         # Create a cursor to run SQL queries
         cur = conn.cursor()

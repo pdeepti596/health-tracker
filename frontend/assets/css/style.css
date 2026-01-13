@@ -1,0 +1,91 @@
+body {
+    min-height: 100vh;
+    background-color: #d6e2ea; /* soft blue-gray */
+    color: #1f2937;
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+}
+.max-w-3xl,
+.max-w-4xl {
+    margin: 40px auto;
+}
+.bg-white {
+    background-color: #cfe0e8; /* muted sky blue */
+    border: 1px solid #b5c9d3;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+h1 {
+    font-size: 26px;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1e293b;
+}
+input,
+select {
+    background-color: #eaf2f6; /* light blue-gray */
+    border: 1px solid #94a3b8;
+    border-radius: 4px;
+    padding: 8px 10px;
+    font-size: 14px;
+}
+
+input:focus,
+select:focus {
+    border-color: #2563eb;
+    outline: none;
+}
+.bg-blue-500 {
+    background-color: #2563eb;
+}
+
+.bg-gray-400 {
+    background-color: #64748b;
+}
+
+button {
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #e6eff5;
+}
+
+thead {
+    background-color: #bcd4e6; /* steel blue */
+}
+
+th {
+    font-weight: 600;
+    border-bottom: 1px solid #9fb6c6;
+}
+
+td {
+    border-bottom: 1px solid #c7d6e0;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #dce9f2;
+}
+
+tbody tr:hover {
+    background-color: #c6dbef;
+}
+.rounded-2xl {
+    background-color: #cfe0e8;
+    border: 1px solid #b5c9d3;
+}
+
+.rounded-2xl:hover {
+    background-color: #bcd4e6;
+}

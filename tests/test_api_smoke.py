@@ -43,7 +43,7 @@ class TestApiSmoke(unittest.TestCase):
         except Exception:
             cls.proc.kill()
 
-    def test_api_health_tracker_returns_200(self):
+    def test_api_healthtracker_returns_200(self):
         """
         This test checks one thing:
         - When we call /api/health-tracker, the server responds correctly

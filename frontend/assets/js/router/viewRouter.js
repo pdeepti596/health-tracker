@@ -31,9 +31,9 @@ export async function router() {
     initMedicalController();
   }
 
-  // else {
-  //   await loadView("/frontend/pages/404.html");
-  // }
+  else {
+    await loadView("/frontend/pages/404.html");
+  }
 }
 
 // Make links work without page reload

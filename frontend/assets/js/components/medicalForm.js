@@ -1,7 +1,7 @@
 import { $, createElement } from "../utils/dom.js";
 
 // Resets the input form to its default state for creating a new student
-export function resetForm() {
+export function resetMedicalForm() {
   // Use the native .reset() method on the HTML form element
   $("medicalForm").reset();
 
@@ -13,7 +13,7 @@ export function resetForm() {
 }
 
 // Populates the input form fields with data from a selected student object (for editing)
-export function fillForm(record) {
+export function fillMedicalForm(record) {
   // Fill each input field with the corresponding property from the student data
   $("user_id").value = record.user_id;
   $("disease").value = record.disease;

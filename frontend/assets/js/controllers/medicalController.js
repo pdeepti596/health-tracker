@@ -8,7 +8,7 @@ import {
 
 import { showAlert } from "../components/Alert.js";
 import { renderMedicalTable } from "../components/medicalTable.js";
-import { resetForm, fillForm } from "../components/medicalForm.js";
+import { resetMedicalForm, fillMedicalForm } from "../components/medicalForm.js";
 
 import { setState, getState } from "../state/store.js";
 import { $, createElement } from "../utils/dom.js";
@@ -50,7 +50,7 @@ export function initMedicalController() {
     // Clear the editing state (set the ID to null)
     setState({ editingId: null });
     // Clear all input fields in the form
-    resetForm();
+    resetMedicalForm();
   });
 }
 
@@ -84,7 +84,7 @@ export async function createNewMedical(data) {
   const res = await apiCreate(data);
   if (res.ok) {
     showAlert("Medical record added!");
-    resetForm();
+    resetMedicalForm();
     loadMedical();
   }
 }
@@ -94,7 +94,7 @@ export async function editMedical(id) {
   const record = await apiGetOne(id);
 
   setState({ editingId: id });
-  fillForm(record);
+  fillMedicalForm(record);
 
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -104,7 +104,7 @@ export async function updateMedical(id, data) {
   const res = await apiUpdate(id, data);
   if (res.ok) {
     showAlert("Updated!");
-    resetForm();
+    resetMedicalForm();
     setState({ editingId: null });
     loadMedical();
   }

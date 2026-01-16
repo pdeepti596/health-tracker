@@ -8,7 +8,7 @@ import {
 
 import { showAlert } from "../components/Alert.js";
 import { renderUserTable } from "../components/UserTable.js";
-import { resetForm, fillForm } from "../components/UserForm.js";
+import { resetUserForm, fillUserForm } from "../components/UserForm.js";
 
 import { setState, getState } from "../state/store.js";
 import { $, createElement } from "../utils/dom.js";
@@ -52,7 +52,7 @@ export function initUserController() {
     // Clear the editing state (set the ID to null)
     setState({ editingId: null });
     // Clear all input fields in the form
-    resetForm();
+    resetUserForm();
   });
 }
 
@@ -86,7 +86,7 @@ export async function createNewUser(data) {
   const res = await apiCreate(data);
   if (res.ok) {
     showAlert("User added!");
-    resetForm();
+    resetUserForm();
     loadUsers();
   }
 }
@@ -96,7 +96,7 @@ export async function editUser(id) {
   const user = await apiGetOne(id);
 
   setState({ editingId: id });
-  fillForm(user);
+  fillUserForm(user);
 
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -106,7 +106,7 @@ export async function updateUser(id, data) {
   const res = await apiUpdate(id, data);
   if (res.ok) {
     showAlert("Updated!");
-    resetForm();
+    resetUserForm();
     setState({ editingId: null });
     loadUsers();
   }

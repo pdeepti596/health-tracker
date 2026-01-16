@@ -3,7 +3,7 @@
 from datetime import datetime
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
-
+from controllers.report import get_health_report
 # # Controllers
 from controllers.user import (
     
@@ -93,6 +93,13 @@ class HealthRouter(BaseHTTPRequestHandler):
 
         if path.startswith("/api/medical/"):
             return get_medical(self, int(path.split("/")[-1]))
+        
+                # ---------------------------
+        # REPORTS (JOIN)
+        # ---------------------------
+        if path == "/api/report":
+            return get_health_report(self)
+
 
         send_404(self)
 

@@ -8,7 +8,7 @@ import {
 
 import { showAlert } from "../components/Alert.js";
 import { renderActivityTable } from "../components/ActivityTable.js";
-import { resetForm, fillForm } from "../components/ActivityForm.js";
+import { resetActivityForm, fillActivityForm } from "../components/ActivityForm.js";
 
 import { setState, getState } from "../state/store.js";
 import { $, createElement } from "../utils/dom.js";
@@ -50,7 +50,7 @@ export function initActivityController() {
     // Clear the editing state (set the ID to null)
     setState({ editingId: null });
     // Clear all input fields in the form
-    resetForm();
+    resetActivityForm();
   });
 }
 
@@ -83,7 +83,7 @@ export async function createNewActivity(data) {
   const res = await apiCreate(data);
   if (res.ok) {
     showAlert("Activity added!");
-    resetForm();
+    resetActivityForm();
     loadActivities();
   }
 }
@@ -93,7 +93,7 @@ export async function editActivity(id) {
   const activity = await apiGetOne(id);
 
   setState({ editingId: id });
-  fillForm(activity);
+  fillActivityForm(activity);
 
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -103,7 +103,7 @@ export async function updateActivity(id, data) {
   const res = await apiUpdate(id, data);
   if (res.ok) {
     showAlert("Updated!");
-    resetForm();
+    resetActivityForm();
     setState({ editingId: null });
     loadActivities();
   }

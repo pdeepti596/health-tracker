@@ -63,20 +63,4 @@ button:hover {
 .rounded-2xl:hover {
     background-color: #bcd4e6;
 }
-/* =========================
-   Home Page Image
-========================= */
 
-.home-banner {
-    max-width: 320px;
-    width: 100%;
-    border-radius: 12px;
-    margin-top: 20px;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-}
-body {
-    background-image: url("/frontend/assets/images/health-bg.png");
-    background-repeat: no-repeat;
-    background-position: top right;
-    background-size: 300px;
-}

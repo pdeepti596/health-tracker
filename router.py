@@ -40,7 +40,7 @@ from core.middleware import add_cors_headers
 # UI ROUTES
 # ----------------------------------------
 FRONTEND_ROUTES = {
-    "/", "/home", "/users", "/activities", "/medical"
+    "/", "/home", "/users", "/activities", "/medical", "/reports"
 }
 
 def handle_ui_routes(handler, path):
@@ -97,7 +97,7 @@ class HealthRouter(BaseHTTPRequestHandler):
                 # ---------------------------
         # REPORTS (JOIN)
         # ---------------------------
-        if path == "/api/report":
+        if path == "/api/reports":
             return get_health_report(self)
 
 

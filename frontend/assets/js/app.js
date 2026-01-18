@@ -1,7 +1,7 @@
 import { initUserController } from "./controllers/userController.js";
 import { initActivityController } from "./controllers/activityController.js";
 import { initMedicalController } from "./controllers/medicalController.js";
-import { initReportController } from "./controllers/reportController.js";
+import { initreportController } from "./controllers/reportController.js";
 
 import { router } from "./router/viewRouter.js";
 
@@ -11,6 +11,6 @@ window.addEventListener("DOMContentLoaded", () => {
  initUserController();
  initActivityController();
  initMedicalController();
- initReportController();
+ initreportController();
 
 });

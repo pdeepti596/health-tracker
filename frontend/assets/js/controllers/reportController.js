@@ -3,7 +3,7 @@ import { apiGetReport } from "../services/reportService.js";
 import { renderReportTable } from "../components/reportTable.js";
 import { $ } from "../utils/dom.js";
 
-export function initreportController() {
+export function initReportController() {
   loadReport();
 }
 
@@ -12,11 +12,12 @@ async function loadReport() {
   const table = $("reportTableContainer");
 
   spinner.style.display = "block";
-  table.classList.add("hidden");
+  table.style.display = "none";
 
   const rows = await apiGetReport();
   renderReportTable(rows);
 
   spinner.style.display = "none";
-  table.classList.remove("hidden");
+  table.style.display = "block";
 }
+

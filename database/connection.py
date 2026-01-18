@@ -7,6 +7,10 @@ def get_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
+# def _column_exists(conn, table, column):
+#     cols = conn.execute(f"PRAGMA table_info({table})").fetchall()
+#     return any(c["name"] == column for c in cols)
+
 def init_database():
     conn = get_connection()
 
@@ -36,7 +40,9 @@ CREATE TABLE IF NOT EXISTS user_activity (
     water_intake REAL,
     calories_burned REAL,
     created_at TEXT,
-    updated_at TEXT
+    updated_at TEXT,
+    FOREIGN KEY(users_id) REFERENCES user_inputs(id)             
+                 
 )
 """)
 
@@ -50,7 +56,8 @@ CREATE TABLE IF NOT EXISTS medical_info (
         genetic_disease TEXT,
         allergies TEXT,
         created_at TEXT,
-        updated_at TEXT
+        updated_at TEXT,
+        FOREIGN KEY(users_id) REFERENCES user_inputs(id)         
     )
 """)
 

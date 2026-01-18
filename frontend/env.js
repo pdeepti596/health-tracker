@@ -3,5 +3,5 @@ window.ENV = {
   USERS_API: "/api/users",
   ACTIVITIES_API: "/api/activities",
   MEDICAL_API: "/api/medical",
-  REPORT_API: "/api/report"
+  REPORTS_API: "/api/reports"
 };

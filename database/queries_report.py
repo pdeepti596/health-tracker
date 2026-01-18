@@ -27,11 +27,9 @@ def user_health_report():
                 m.allergies
 
             FROM user_inputs u
-            INNER JOIN user_activity a
-                ON u.user_id = a.user_id
-            INNER JOIN medical_info m
-                ON u.user_id = m.user_id
-            ORDER BY u.user_id
+            LEFT JOIN user_activity a ON a.user_id = u.user_id
+            LEFT JOIN medical_info m ON m.user_id = u.user_id
+            ORDER BY u.user_id DESC
         """
 
         cursor.execute(query)
@@ -39,20 +37,20 @@ def user_health_report():
 
         result = [
             {
-                "user_id": r[0],
-                "name": r[1],
-                "age": r[2],
-                "gender": r[3],
-                "height": r[4],
-                "weight": r[5],
-                "steps": r[6],
-                "water_intake": r[7],
-                "calories_burned": r[8],
-                "disease": r[9] or "None",
-                "genetic_disease": r[10] or "None",
-                "allergies": r[11] or "None"
+                "user_id": row[0],
+                "name": row[1],
+                "age": row[2],
+                "gender": row[3],
+                "height": row[4],
+                "weight": row[5],
+                "steps": row[6],
+                "water_intake": row[7],
+                "calories_burned": row[8],
+                "disease": row[9] or "None",
+                "genetic_disease": row[10] or "None",
+                "allergies": row[11] or "None"
             }
-            for r in rows
+            for row in rows
         ]
 
         conn.close()
@@ -60,7 +58,7 @@ def user_health_report():
         return result
 
     except Exception as e:
-        print(f"❌ Error in user_health_report: {e}")
+        print(f"❌ Database error in user_health_report: {e}")
         import traceback
         traceback.print_exc()
         return []

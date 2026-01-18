@@ -1,7 +1,7 @@
 import { initUserController } from "../controllers/userController.js";
 import { initActivityController } from "../controllers/activityController.js";
 import { initMedicalController } from "../controllers/medicalController.js";
-import { initReportController } from "../controllers/reportController.js";
+import { initreportController } from "../controllers/reportController.js";
 
 // Load a view into #app container
 async function loadView(path) {
@@ -31,9 +31,9 @@ export async function router() {
     await loadView("/frontend/pages/medical.html");
     initMedicalController();
   }
-    else if (path === "/reports") {
+    else if (path === "/report") {
     await loadView("/frontend/pages/report.html");
-    initReportController();
+    initreportController();
   }
 
   else {

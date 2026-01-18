@@ -75,6 +75,15 @@ class HealthRouter(BaseHTTPRequestHandler):
 
         if handle_ui_routes(self, path):
             return
+        
+        if path == "/favicon.ico":
+            return send_404(self)
+        
+                # ---------------------------
+        # REPORTS (JOIN)
+        # ---------------------------
+        if path == "/api/report":
+            return get_health_report(self)
 
         if path == "/api/users":
             return get_all_users(self)
@@ -93,13 +102,6 @@ class HealthRouter(BaseHTTPRequestHandler):
 
         if path.startswith("/api/medical/"):
             return get_medical(self, int(path.split("/")[-1]))
-        
-                # ---------------------------
-        # REPORTS (JOIN)
-        # ---------------------------
-        if path == "/api/reports":
-            return get_health_report(self)
-
 
         send_404(self)
 

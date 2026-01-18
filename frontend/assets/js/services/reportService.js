@@ -1,46 +1,38 @@
-// // frontend/assets/js/services/reportService.js
-// const API_URL = "/api/reports";
-// // const REPORT_URL = window.ENV.REPORT_API;
-// async function safeJson(res) {
-//   try {
-//     return await res.json();
-//   } catch {
-//     return [];
-//   }
-// }
+// frontend/assets/js/services/reportService.js
 
-// export async function apiGetReport() {
-//   const res = await fetch(API_URL);
-//   if (!res.ok) return [];
-//   return safeJson(res);
-// }
-
-const API_URL = window.ENV.REPORTS_API;
+// Using /api/report endpoint
+const API_URL = "/api/report";
 
 async function safeJson(res) {
   try {
-    return await res.json();
-  } catch (_) {
-    return null;
+    const data = await res.json();
+    console.log("📊 API Response Data:", data);
+    return data;
+  } catch (error) {
+    console.error("❌ JSON parse error:", error);
+    return [];
   }
 }
 
-/**
- * GET all reports
- * This endpoint must return INNER JOIN data:
- * users + activities + medical
- */
-export async function apiGetAll() {
-  const res = await fetch(API_URL);
-  if (!res.ok) return [];
-  return safeJson(res);
-}
-
-/**
- * GET report for one user (optional)
- */
-export async function apiGetOne(id) {
-  const res = await fetch(`${API_URL}/${id}`);
-  if (!res.ok) return null;
-  return safeJson(res);
+export async function apiGetReport() {
+  console.log("🔍 Fetching from:", API_URL);
+  
+  try {
+    const res = await fetch(API_URL);
+    console.log("📡 HTTP Response:", res.status, res.statusText);
+    
+    if (!res.ok) {
+      console.error(`❌ API error: ${res.status} ${res.statusText}`);
+      return [];
+    }
+    
+    const data = await safeJson(res);
+    console.log("✅ Total records loaded:", data.length);
+    
+    return data;
+    
+  } catch (error) {
+    console.error("❌ Fetch error:", error);
+    return [];
+  }
 }

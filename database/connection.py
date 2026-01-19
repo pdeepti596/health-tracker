@@ -19,7 +19,7 @@ def init_database():
     # -------------------------
     conn.execute("""
         CREATE TABLE IF NOT EXISTS user_inputs (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
             age INTEGER,
             gender TEXT,
@@ -35,13 +35,13 @@ def init_database():
     conn.execute("""
 CREATE TABLE IF NOT EXISTS user_activity (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER,
+     user_id INTEGER,
     steps INTEGER,
     water_intake REAL,
     calories_burned REAL,
     created_at TEXT,
     updated_at TEXT,
-    FOREIGN KEY(users_id) REFERENCES user_inputs(id)             
+    FOREIGN KEY(user_id) REFERENCES user_inputs(id)             
                  
 )
 """)
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS medical_info (
         allergies TEXT,
         created_at TEXT,
         updated_at TEXT,
-        FOREIGN KEY(users_id) REFERENCES user_inputs(id)         
+        FOREIGN KEY(user_id) REFERENCES user_inputs(id)         
     )
 """)
 

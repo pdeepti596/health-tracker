@@ -40,7 +40,7 @@ from core.middleware import add_cors_headers
 # UI ROUTES
 # ----------------------------------------
 FRONTEND_ROUTES = {
-    "/", "/home", "/users", "/activities", "/medical", "/reports"
+    "/", "/home", "/users", "/activities", "/medical", "/report"
 }
 
 def handle_ui_routes(handler, path):

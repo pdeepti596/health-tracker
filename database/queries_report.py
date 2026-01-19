@@ -11,33 +11,30 @@ def user_health_report():
 
         query = """
             SELECT
-                u.user_id,
-                u.name,
-                u.age,
-                u.height,
-                u.weight,
-                u.gender,
-
-                a.steps,
-                a.water_intake,
-                a.calories_burned,
-
-                m.disease,
-                m.genetic_disease,
-                m.allergies
-
-            FROM user_inputs u
-            LEFT JOIN user_activity a ON a.user_id = u.user_id
-            LEFT JOIN medical_info m ON m.user_id = u.user_id
-            ORDER BY u.user_id DESC
-        """
+            u.id AS user_id,
+            u.name,
+            u.age,
+            u.height,
+            u.weight,
+            u.gender,
+            a.steps,
+            a.water_intake,
+            a.calories_burned,
+            m.disease,
+            m.genetic_disease,
+            m.allergies
+        FROM user_inputs u
+        LEFT JOIN user_activity a ON a.user_id = u.id
+        LEFT JOIN medical_info m ON m.user_id = u.id
+        ORDER BY u.id DESC;
+      """
 
         cursor.execute(query)
         rows = cursor.fetchall()
 
         result = [
             {
-                "user_id": row[0],
+                "id": row[0],
                 "name": row[1],
                 "age": row[2],
                 "gender": row[3],

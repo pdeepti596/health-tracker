@@ -182,7 +182,7 @@ import { renderReportTable } from "../components/reportTable.js";
 // Columns definition (Health Report)
 // ----------------------------------
 const REPORT_COLUMNS = [
-  { key: "id", label: "User ID" },
+  { key: "id", label: " ID" },
   { key: "name", label: "Name" },
   { key: "age", label: "Age" },
   { key: "height", label: "Height" },
@@ -255,7 +255,7 @@ function getRows() {
   const sortDir = $("sortDir")?.value ?? "asc";
 
   const filtered = filterList(allReportData, q, [
-    "user_id",
+    "id",
     "name",
     "disease",
     "genetic_disease",

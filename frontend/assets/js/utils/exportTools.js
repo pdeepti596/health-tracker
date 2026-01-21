@@ -1,8 +1,4 @@
 // frontend/assets/js/utils/exportTools.js
-
-// -------------------------
-// Helpers
-// -------------------------
 function downloadBlob(filename, blob) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
@@ -29,9 +25,6 @@ function safeCsv(v) {
   return /[",\n]/.test(escaped) ? `"${escaped}"` : escaped;
 }
 
-// -------------------------
-// CSV EXPORT (Health Report)
-// -------------------------
 export function exportToCSV(filename, rows, columns) {
   if (!rows || !rows.length) {
     alert("No data to export");
@@ -52,9 +45,6 @@ export function exportToCSV(filename, rows, columns) {
   downloadBlob(filename, blob);
 }
 
-// -------------------------
-// PDF EXPORT (Print Table)
-// -------------------------
 export function exportToPDF(title, rows, columns) {
   if (!rows || !rows.length) {
     alert("No data to export");
@@ -92,9 +82,6 @@ export function exportToPDF(title, rows, columns) {
   printHTML(title, tableHTML);
 }
 
-// -------------------------
-// Print helper (PDF via browser)
-// -------------------------
 function printHTML(title, htmlContent) {
   const w = window.open("", "_blank");
   if (!w) return;

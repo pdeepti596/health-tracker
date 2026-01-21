@@ -14,7 +14,6 @@ export async function apiGetAll() {
     return safeJson(res);
 }
 
-// // Fetch one student by ID
 export async function apiGetOne(id) {
   const res = await fetch(`${API_URL}/${id}`);
   if (!res.ok) return null;
@@ -29,8 +28,6 @@ export function  apiCreate(data) {
     });
 }
 
-
-// // Update a student
 export function apiUpdate(id, data) {
   return fetch(`${API_URL}/${id}`, {
     method: "PUT",
@@ -39,7 +36,6 @@ export function apiUpdate(id, data) {
   });
 }
 
-// Delete a student
 export function apiDelete(id) {
   return fetch(`${API_URL}/${id}`, { method: "DELETE" });
 }

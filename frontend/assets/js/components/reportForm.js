@@ -1,13 +1,11 @@
 import { $, createElement } from "../utils/dom.js";
 
-// Resets the input form to its default state for creating a new user
 export function resetReportForm() {
-  // Use the native .reset() method on the HTML form element
+  
   $("reportForm").reset();
 
 }
 
-// Populates the input form fields with data from a selected student object (for editing)
 export function fillReportForm(data) {
   $("name").value = data.name ?? "";
   $("age").value = data.age ?? "";

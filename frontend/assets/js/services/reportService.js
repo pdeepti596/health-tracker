@@ -1,6 +1,4 @@
 // frontend/assets/js/services/reportService.js
-
-// Using /api/report endpoint
 const API_URL = "/api/report";
 
 async function safeJson(res) {

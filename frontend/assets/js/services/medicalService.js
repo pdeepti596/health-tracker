@@ -29,8 +29,6 @@ export function  apiCreate(data) {
     });
 }
 
-
-// // Update a student
 export function apiUpdate(id, data) {
   return fetch(`${API_URL}/${id}`, {
     method: "PUT",
@@ -39,7 +37,6 @@ export function apiUpdate(id, data) {
   });
 }
 
-// Delete a student
 export function apiDelete(id) {
   return fetch(`${API_URL}/${id}`, { method: "DELETE" });
 }

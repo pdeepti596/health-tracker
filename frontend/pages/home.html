@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -282,11 +282,11 @@
     <div class="main-wrapper">
         <div class="container">
 
-            <!-- Header -->
-            <div class="header">
+            <!- Header -->
+            <!-- <div class="header">
                 <h1>🏥 Health Tracker System</h1>
                 <p>Your Complete Health Management Solution</p>
-            </div>
+            </div> -->
 
             <!-- Statistics Cards -->
             <!-- <div class="stats-grid">
@@ -310,7 +310,7 @@
             </div> -->
 
             <!-- Navigation Section -->
-            <div class="content-section">
+            <!-- <div class="content-section">
                 <h2 class="section-title">Quick Access</h2>
                 <div class="nav-buttons">
                     <a href="users" class="nav-button blue">
@@ -330,10 +330,10 @@
                         <span>Health Report</span>
                     </a>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Features Section -->
-            <div class="info-section">
+            <!-- <div class="info-section">
                 <h2>System Features</h2>
                 <p>Comprehensive health tracking system to monitor users, activities, and medical records all in one place.</p> 
                 
@@ -367,4 +367,92 @@
         </div>
     </div>
 </body>
-</html>
+</html>  -->
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Font Awesome -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+
+<!-- Common Custom Styles -->
+<style>
+  body {
+    background-color: #f3f4f6; /* light gray */
+    font-family: ui-sans-serif, system-ui, -apple-system;
+  }
+
+  h1 {
+    color: #111827;
+  }
+
+  h2 {
+    color: #1f2937;
+  }
+
+  /* Card look */
+  .card {
+    background: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  }
+
+  /* Inputs */
+  input, select {
+    transition: border 0.2s, box-shadow 0.2s;
+  }
+
+  input:focus, select:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59,130,246,0.2);
+  }
+
+  /* Buttons */
+  button {
+    transition: background 0.2s, transform 0.1s;
+  }
+
+  button:hover {
+    transform: translateY(-1px);
+  }
+
+  /* Tables */
+  table th {
+    font-weight: 600;
+    color: #374151;
+  }
+
+  table td {
+    color: #374151;
+  }
+
+  table tbody tr:hover {
+    background-color: #f9fafb;
+  }
+
+  /* Spinner center */
+  .spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Alerts */
+  .alert {
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .alert-success {
+    background: #dcfce7;
+    color: #166534;
+  }
+
+  .alert-error {
+    background: #fee2e2;
+    color: #991b1b;
+  }
+</style>

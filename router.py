@@ -51,10 +51,6 @@ def handle_ui_routes(handler, path):
     if path.startswith("/frontend/"):
         serve_static(handler, path.lstrip("/"))
         return True
-    
-    # if path.startswith("/profiles/"):
-    #     serve_static(handler, "frontend/pages/index.html")
-    #     return True
 
 
     return False

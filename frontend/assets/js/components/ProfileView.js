@@ -1,95 +1,101 @@
-// // frontend/assets/js/components/ProfileView.js
-// import { $ } from "../utils/dom.js";
 
-// /* ------------------------
-//    Helper functions
-// ------------------------ */
 
-// function show(id, yes) {
-//   const el = $(id);
-//   if (!el) return;
-//   el.classList[yes ? "remove" : "add"]("hidden");
-// }
+// frontend/assets/js/components/ProfileView.js
+import { $ } from "../utils/dom.js";
 
-// function setText(id, value) {
-//   const el = $(id);
-//   if (el) el.textContent = value ?? "—";
-// }
+/* ------------------------
+   Helpers
+------------------------ */
 
-// /* ------------------------
-//    Loading states
-// ------------------------ */
+function show(id, yes) {
+  const el = $(id);
+  if (!el) return;
+  el.classList[yes ? "remove" : "add"]("hidden");
+}
 
-// export function setProfileLoading(isLoading) {
-//   // User basic info
-//   show("basicLoading", isLoading);
-//   show("basicDetails", !isLoading);
+function setText(id, value) {
+  const el = $(id);
+  if (el) el.textContent = value ?? "—";
+}
 
-//   // Health JOIN table
-//   show("healthLoading", isLoading);
-//   show("healthTableContainer", !isLoading);
-// }
+/* ------------------------
+   Loading states
+------------------------ */
 
-// /* ------------------------
-//    User basic details
-// ------------------------ */
+export function setProfileLoading(isLoading) {
+  // Basic user info
+  show("basicLoading", isLoading);
+  show("basicDetails", !isLoading);
 
-// export function renderUserBasic(user) {
-//   setText("userId", user?.user_id ?? user?.id);
-//   setText("userName", user?.name);
-//   setText("userAge", user?.age);
-//   setText("userGender", user?.gender);
-// }
+  // Health records table
+  show("joinLoading", isLoading);
+  show("joinTableContainer", !isLoading);
+}
 
-// /* ------------------------
-//    Health summary count
-// ------------------------ */
+/* ------------------------
+   User basic details
+------------------------ */
 
-// export function renderHealthRecordCount(count) {
-//   const totalEl = $("totalHealthRecords");
-//   if (totalEl) {
-//     totalEl.textContent = `Total Records: ${count ?? 0}`;
-//   }
-// }
+export function renderUserBasic(user) {
+  setText("userId", user?.id);
+  setText("userName", user?.name);
+  setText("userAge", user?.age);
+  // setText("userGender", user?.gender);
+  setText("userHeight", user?.height);
+  setText("userWeight", user?.weight);
+  setText("userGender", user?.gender);
+  
+}
 
-// /* ------------------------
-//    Health report table
-// ------------------------ */
+/* ------------------------
+   Health records count
+------------------------ */
 
-// export function renderHealthTable(rows) {
-//   const body = $("healthTableBody");
-//   if (body) body.innerHTML = "";
+export function renderHealthRecordCount(count) {
+  const el = $("totalRecords");
+  if (el) el.textContent = count ?? 0;
+}
 
-//   if (!rows || rows.length === 0) {
-//     show("noHealthData", true);
-//     return;
-//   }
+/* ------------------------
+   Health JOIN table
+------------------------ */
 
-//   show("noHealthData", false);
+export function renderHealthTable(rows = []) {
+  const body = $("joinTableBody");
+  if (!body) return;
 
-//   rows.forEach((r) => {
-//     const tr = document.createElement("tr");
-//     tr.className = "border-b hover:bg-gray-50";
+  body.innerHTML = "";
 
-//     tr.innerHTML = `
-//       <td class="px-3 py-2">${r.steps ?? "-"}</td>
-//       <td class="px-3 py-2">${r.water ?? "-"}</td>
-//       <td class="px-3 py-2">${r.calories ?? "-"}</td>
-//       <td class="px-3 py-2">${r.disease ?? "-"}</td>
-//       <td class="px-3 py-2">${r.genetic_disease ?? "-"}</td>
-//       <td class="px-3 py-2">${r.allergies ?? "-"}</td>
-//     `;
+  if (!rows.length) {
+    show("noRecords", true);
+    return;
+  }
 
-//     body.appendChild(tr);
-//   });
-// }
+  show("noRecords", false);
 
-// /* ------------------------
-//    Error state
-// ------------------------ */
+  rows.forEach((r) => {
+    const tr = document.createElement("tr");
+    tr.className = "border-b";
 
-// export function renderProfileError() {
-//   setProfileLoading(false);
-//   renderHealthRecordCount(0);
-//   show("noHealthData", true);
-// }
+    tr.innerHTML = `
+      <td class="px-3 py-2">${r.steps ?? "-"}</td>
+      <td class="px-3 py-2">${r.water_intake ?? "-"}</td>
+      <td class="px-3 py-2">${r.calories_burned?? "-"}</td>
+      <td class="px-3 py-2">${r.disease ?? "-"}</td>
+      <td class="px-3 py-2">${r.genetic_disease ?? "-"}</td>
+      <td class="px-3 py-2">${r.allergies ?? "-"}</td>
+    `;
+
+    body.appendChild(tr);
+  });
+}
+
+/* ------------------------
+   Error state
+------------------------ */
+
+export function renderProfileError() {
+  setProfileLoading(false);
+  renderHealthRecordCount(0);
+  show("noRecords", true);
+}

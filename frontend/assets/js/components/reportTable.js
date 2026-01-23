@@ -25,7 +25,8 @@ export function renderReportTable(rows = []) {
   rows.forEach((r, index) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td class="px-3 py-2"><strong>${r.id || 'None'}</strong></td>
+
+      <td class="px-3 py-2"><strong>${r.user_id || 'None'}</strong></td>
       <td class="px-3 py-2">${r.name || 'None'}</td>
       <td class="px-3 py-2">${r.age || 'None'}</td>
       <td class="px-3 py-2">${r.height || 'None'}</td>
@@ -37,6 +38,13 @@ export function renderReportTable(rows = []) {
       <td class="px-3 py-2">${r.disease || 'None'}</td>
       <td class="px-3 py-2">${r.genetic_disease || 'None'}</td>
       <td class="px-3 py-2">${r.allergies || 'None'}</td>
+
+     <td class="px-3 py-2">
+  <a href="/report/${r.user_id}" data-link class="text-blue-600 hover:underline">
+    view
+  </a>
+</td>
+
     `;
     body.appendChild(tr);
   });

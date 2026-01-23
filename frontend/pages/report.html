@@ -20,9 +20,9 @@
 
   <!-- Search + Sort + Export -->
   <div class="bg-white p-5 rounded shadow mb-6">
-    <div class="flex flex-col gap-4">
+     <div class="flex flex-col gap-4">
 
-      <div class="flex flex-col lg:flex-row lg:items-center gap-3">
+      <div class="flex flex-col lg:flex-row lg:items-center gap-3"> 
 
         <!-- Search -->
         <div class="w-full lg:w-96 relative">
@@ -30,11 +30,12 @@
           <input
             id="searchInput"
             type="text"
-            placeholder="Search by name, disease, allergies..."
+            placeholder="Search by user_id, name, disease..."
             class="w-full h-10 border rounded pl-9 pr-3 text-sm
                    focus:outline-none focus:ring-2 focus:ring-blue-200"
           />
         </div>
+      </div>
 
         <!-- Sort -->
         <div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
@@ -42,11 +43,10 @@
           <div class="relative w-full sm:w-48">
             <i class="fa-solid fa-arrow-down-a-z absolute left-3 top-1/2 -translate-y-1/2 text-gray-600 text-sm"></i>
             <select id="sortBy" class="w-full h-10 border rounded pl-9 pr-3 text-sm bg-white">
-              <option value="user_id">Sort:ID</option>
+              <option value="user_id">Sort: User ID</option>
               <option value="name">Sort: Name</option>
               <option value="age">Sort: Age</option>
               <option value="steps">Sort: Steps</option>
-              <option value="calories">Sort: Calories</option>
             </select>
           </div>
 
@@ -57,8 +57,6 @@
               <option value="desc">Desc ↓</option>
             </select>
           </div>
-
-        </div>
 
         <!-- Export -->
         <div class="flex gap-2 w-full lg:w-auto lg:ml-auto">

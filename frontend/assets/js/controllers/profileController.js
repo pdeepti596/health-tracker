@@ -1,7 +1,12 @@
 // frontend/assets/js/controllers/profileController.js
 
 import { $ } from "../utils/dom.js";
-import { exportToCSV, exportToPDF } from "../utils/exportTools.js";
+// import { exportToCSV, exportToPDF } from "../utils/exportTools.js";
+import {
+  exportToCSV,
+  exportProfileToPDF
+} from "../utils/exportTools.js";
+
 
 import {
   fetchUserById,
@@ -58,7 +63,12 @@ export async function initProfileController(userId) {
     ------------------------ */
     $("profileExportPdfBtn")?.addEventListener("click", () => {
       const html = buildProfilePDFHtml(user, rows);
-      exportToPDF(`User ${user.name} Health Profile`, html);
+      // exportToPDF(`User ${user.name} Health Profile`, html);
+      exportProfileToPDF(
+  `User ${user.name} Health Profile`,
+  html
+);
+
     });
 
     setProfileLoading(false);

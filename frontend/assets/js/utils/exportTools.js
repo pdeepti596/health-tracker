@@ -133,3 +133,63 @@ function printHTML(title, htmlContent) {
   w.focus();
   w.print();
 }
+
+// =====================================
+// Profile PDF Export (HTML-based)
+// =====================================
+export function exportProfileToPDF(title, htmlContent) {
+  const w = window.open("", "_blank");
+  if (!w) return;
+
+  w.document.open();
+  w.document.write(`
+    <html>
+      <head>
+        <title>${escHtml(title)}</title>
+        <meta charset="utf-8" />
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #ffffff;
+            color: #111827;
+          }
+          h1 {
+            font-size: 20px;
+            margin-bottom: 12px;
+          }
+          h2 {
+            font-size: 14px;
+            margin-top: 16px;
+            margin-bottom: 6px;
+          }
+          .meta {
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 12px;
+          }
+          table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+          }
+          th, td {
+            border: 1px solid #e5e7eb;
+            padding: 6px 8px;
+            font-size: 12px;
+            text-align: left;
+          }
+          th {
+            background: #f3f4f6;
+          }
+        </style>
+      </head>
+      <body>
+        ${htmlContent}
+      </body>
+    </html>
+  `);
+  w.document.close();
+  w.focus();
+  w.print();
+}

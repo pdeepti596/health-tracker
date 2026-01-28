@@ -26,8 +26,8 @@ export const PROFILE_CSV_COLUMNS = [
 export function normalizeProfileRows(rows) {
   return (rows || []).map(r => ({
     steps: r.steps ?? "",
-    water: r.water ?? "",
-    calories: r.calories ?? "",
+    water: r.water_intake ?? "",
+    calories: r.calories_burned ?? "",
     disease: r.disease ?? "",
     genetic_disease: r.genetic_disease ?? "",
     allergies: r.allergies ?? "",
@@ -50,9 +50,10 @@ export function buildProfilePDFHtml(user, rows) {
         <tr><th>User ID</th><td>${esc(safeUser.user_id ?? safeUser.id)}</td></tr>
         <tr><th>Name</th><td>${esc(safeUser.name)}</td></tr>
         <tr><th>Age</th><td>${esc(safeUser.age)}</td></tr>
-        <tr><th>Gender</th><td>${esc(safeUser.gender)}</td></tr>
         <tr><th>Height</th><td>${esc(safeUser.height)}</td></tr>
         <tr><th>Weight</th><td>${esc(safeUser.weight)}</td></tr>
+        <tr><th>Gender</th><td>${esc(safeUser.gender)}</td></tr>
+
         <tr><th>Total Records</th><td>${safeRows.length}</td></tr>
       </tbody>
     </table>

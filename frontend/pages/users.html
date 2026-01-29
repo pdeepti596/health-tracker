@@ -3,80 +3,301 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="max-w-3xl mx-auto p-6">
-
-  <div class="flex items-center justify-between mb-6">
-    <h1 class="text-3xl font-bold">User Profile</h1>
-    <a href="/home" data-link class="text-sm text-blue-600 underline">← Back to Home</a>
-  </div>
-
-  <!-- Add / Edit user Form -->
-  <div class="bg-white p-5 rounded shadow mb-8">
-    <h2 class="font-semibold mb-3 text-lg">Add New User</h2>
-    <form id="userForm" class="space-y-3">
-      <input type="text" id="name" placeholder="Name" required class="w-full border rounded px-3 py-2">
-      <input type="number" id="age" placeholder="Age" required class="w-full border rounded px-3 py-2">
-      <input type="number" id="height" placeholder="Height" required class="w-full border rounded px-3 py-2">
-      <input type="number" id="weight" placeholder="weight" required class="w-full border rounded px-3 py-2">
-      <select id ="gender" required class="w-full border rounded px-3 py-2">
-        <option value="">Select Gender</option>
-        <option>Male</option>
-        <option>Female</option>
-        <option>Other</option>
-       </select>
-
-      <div class="flex space-x-2">
-        <button type="submit" id="submitBtn"
-          class="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded">
-          Save User
-        </button>
-
-        <button type="button" id="cancelBtn"
-          class="flex-1 bg-gray-400 hover:bg-gray-500 text-white py-2 rounded hidden">
-          Cancel
-        </button>
-      </div>
-    </form>
-  </div>
-
-  <!-- Users Table -->
-  <div class="bg-white p-5 rounded shadow">
-    <h2 class="font-semibold mb-4 text-lg">All Users</h2>
-
-    <!-- Loading Spinner -->
-    <div id="loadingSpinner" class="text-center py-4">
-      <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500 mx-auto"></div>
-    </div>
-
-    <!-- Users Table Container -->
-    <div id="usersTableContainer" class="hidden overflow-x-auto">
-      <table class="min-w-full text-left border">
-        <thead class="bg-gray-200">
-          <tr>
-            <th class="px-3 py-2">User ID</th>
-            <th class="px-3 py-2">Name</th>
-            <th class="px-3 py-2">Age</th>
-            <th class="px-3 py-2">Height</th>
-            <th class="px-3 py-2">Weight</th>
-            <th class="px-3 py-2">Gender</th>
-            <th class="px-3 py-2">Actions</th>
-           </tr>
-        </thead>
-        <tbody id="usersTableBody"></tbody>
-      </table>
-
-      <p id="noUsers" class="text-center text-gray-500 mt-3 hidden">
-        No users found. Add one using the form above.
-      </p>
-    </div>
-  </div>
-
-  <!-- Alert container -->
-  <div id="alertContainer" class="fixed top-4 right-4 space-y-2 z-50"></div>
-</div>
+    <title>User Management - Health Tracker</title>
     
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+             background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%);
+        }
+        
+        /* Smooth fade in animation */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Input focus effect */
+        input:focus, select:focus {
+            outline: none;
+            border-color: #3B82F6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        /* Button hover effects */
+        .btn-primary {
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3);
+        }
+        
+        /* Table hover effect */
+        tbody tr {
+            transition: all 0.2s ease;
+        }
+        
+        tbody tr:hover {
+            background-color: #F9FAFB;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Edit button */
+        .btn-edit {
+            transition: all 0.2s ease;
+        }
+        
+        .btn-edit:hover {
+            background-color: #F59E0B;
+            transform: scale(1.05);
+        }
+        
+        /* Delete button */
+        .btn-delete {
+            transition: all 0.2s ease;
+        }
+        
+        .btn-delete:hover {
+            background-color: #DC2626;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Page Header -->
+    <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-8 shadow-lg">
+        <div class="max-w-6xl mx-auto px-9">
+            <div class="flex items-center justify-between">
+                <div>
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-users text-2xl"></i>
+                        </div>
+                        <h1 class="text-4xl font-bold">User Profile</h1>
+                    </div>
+                    <p class="text-blue-100 text-lg">Manage user accounts and health information</p>
+                </div>
+                <a href="/home" data-link 
+                   class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-lg font-semibold transition-all inline-flex items-center gap-2 backdrop-blur-sm">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-6 py-8">
+
+        <!-- Add User Form Card -->
+        <div class="bg-white rounded-2xl shadow-lg mb-8 overflow-hidden fade-in">
+            <div class="bg-gradient-to-r from-blue-50 to-green-50 px-8 py-6 border-b border-gray-200">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-user-plus text-white"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900">Add New User</h2>
+                        <p class="text-gray-600 text-sm">Create a new user profile with health details</p>
+                    </div>
+                </div>
+            </div>
+            
+            <form id="userForm" class="p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Name Input -->
+                    <div>
+                        <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">
+                            <i class="fas fa-user text-blue-600 mr-2"></i>Full Name
+                        </label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            placeholder="Enter full name" 
+                            required 
+                            class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 transition-all"
+                        />
+                    </div>
+
+                    <!-- Age Input -->
+                    <div>
+                        <label for="age" class="block text-sm font-semibold text-gray-700 mb-2">
+                            <i class="fas fa-calendar text-green-600 mr-2"></i>Age
+                        </label>
+                        <input 
+                            type="number" 
+                            id="age" 
+                            placeholder="Enter age" 
+                            required 
+                            class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 transition-all"
+                        />
+                    </div>
+
+                    <!-- Height Input -->
+                    <div>
+                        <label for="height" class="block text-sm font-semibold text-gray-700 mb-2">
+                            <i class="fas fa-ruler-vertical text-purple-600 mr-2"></i>Height (cm)
+                        </label>
+                        <input 
+                            type="number" 
+                            id="height" 
+                            placeholder="Enter height in cm" 
+                            required 
+                            class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 transition-all"
+                        />
+                    </div>
+
+                    <!-- Weight Input -->
+                    <div>
+                        <label for="weight" class="block text-sm font-semibold text-gray-700 mb-2">
+                            <i class="fas fa-weight text-orange-600 mr-2"></i>Weight (kg)
+                        </label>
+                        <input 
+                            type="number" 
+                            id="weight" 
+                            placeholder="Enter weight in kg" 
+                            required 
+                            class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 transition-all"
+                        />
+                    </div>
+
+                    <!-- Gender Select -->
+                    <div class="md:col-span-2">
+                        <label for="gender" class="block text-sm font-semibold text-gray-700 mb-2">
+                            <i class="fas fa-venus-mars text-pink-600 mr-2"></i>Gender
+                        </label>
+                        <select 
+                            id="gender" 
+                            required 
+                            class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 text-gray-900 transition-all bg-white"
+                        >
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Form Buttons -->
+                <div class="flex gap-4 mt-8">
+                    <button 
+                        type="submit" 
+                        id="submitBtn"
+                        class="btn-primary flex-1 bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-lg font-bold text-lg shadow-lg inline-flex items-center justify-center gap-2"
+                    >
+                        <i class="fas fa-save"></i>
+                        Save User
+                    </button>
+
+                    <button 
+                        type="button" 
+                        id="cancelBtn"
+                        class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-4 rounded-lg font-bold text-lg transition-all inline-flex items-center justify-center gap-2 hidden"
+                    >
+                        <i class="fas fa-times"></i>
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Users Table Card -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden fade-in">
+            <div class="bg-gradient-to-r from-green-50 to-blue-50 px-8 py-6 border-b border-gray-200">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-list text-white"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-900">All Users</h2>
+                            <p class="text-gray-600 text-sm">View and manage all registered users</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="p-8">
+                <!-- Loading Spinner -->
+                <div id="loadingSpinner" class="text-center py-12">
+                    <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-200 border-t-blue-600"></div>
+                    <p class="text-gray-500 mt-4 font-medium">Loading users...</p>
+                </div>
+
+                <!-- Users Table Container -->
+                <div id="usersTableContainer" class="hidden">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full">
+                            <thead class="bg-gray-50 border-b-2 border-gray-200">
+                                <tr>
+                                    <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
+                                        <i class="fas fa-hashtag text-gray-400 mr-2"></i>User ID
+                                    </th>
+                                    <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
+                                        <i class="fas fa-user text-blue-600 mr-2"></i>Name
+                                    </th>
+                                    <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
+                                        <i class="fas fa-birthday-cake text-green-600 mr-2"></i>Age
+                                    </th>
+                                    <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
+                                        <i class="fas fa-arrows-alt-v text-purple-600 mr-2"></i>Height
+                                    </th>
+                                    <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
+                                        <i class="fas fa-weight-hanging text-orange-600 mr-2"></i>Weight
+                                    </th>
+                                    <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
+                                        <i class="fas fa-venus-mars text-pink-600 mr-2"></i>Gender
+                                    </th>
+                                    <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
+                                        <i class="fas fa-cog text-gray-600 mr-2"></i>Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody" class="bg-white divide-y divide-gray-100">
+                                <!-- Table rows will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- No Users Message -->
+                    <div id="noUsers" class="text-center py-12 hidden">
+                        <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-users text-gray-400 text-4xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">No Users Yet</h3>
+                        <p class="text-gray-500 mb-6">Add your first user using the form above</p>
+                        <button onclick="document.getElementById('name').focus()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all inline-flex items-center gap-2">
+                            <i class="fas fa-plus"></i>
+                            Add First User
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Alert Container -->
+    <div id="alertContainer" class="fixed top-4 right-4 space-y-2 z-50"></div>
+
+
 </body>
 </html>

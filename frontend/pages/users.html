@@ -17,24 +17,30 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-             background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%);
+            /* Soft pastel blue-gray background */
+            background: linear-gradient(135deg, #F0F4FF 0%, #E8F5E9 50%, #FFF8E1 100%);
         }
         
         /* Smooth fade in animation */
         .fade-in {
-            animation: fadeIn 0.5s ease-in;
+            animation: fadeIn 0.6s ease-in;
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
-        /* Input focus effect */
+        /* Soft shadow */
+        .soft-shadow {
+            box-shadow: 0 4px 20px rgba(100, 150, 200, 0.08);
+        }
+        
+        /* Input focus effect with soft colors */
         input:focus, select:focus {
             outline: none;
-            border-color: #3B82F6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            border-color: #93C5FD;
+            box-shadow: 0 0 0 3px rgba(147, 197, 253, 0.2);
         }
         
         /* Button hover effects */
@@ -44,7 +50,7 @@
         
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 8px 20px rgba(96, 165, 250, 0.25);
         }
         
         /* Table hover effect */
@@ -53,48 +59,33 @@
         }
         
         tbody tr:hover {
-            background-color: #F9FAFB;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            background: linear-gradient(to right, #F0F9FF, #F0FDF4);
+            box-shadow: 0 2px 12px rgba(100, 150, 200, 0.06);
         }
         
-        /* Edit button */
-        .btn-edit {
-            transition: all 0.2s ease;
-        }
-        
-        .btn-edit:hover {
-            background-color: #F59E0B;
-            transform: scale(1.05);
-        }
-        
-        /* Delete button */
-        .btn-delete {
-            transition: all 0.2s ease;
-        }
-        
-        .btn-delete:hover {
-            background-color: #DC2626;
-            transform: scale(1.05);
+        /* Soft gradient header */
+        .soft-gradient {
+            background: linear-gradient(135deg, #BFDBFE 0%, #A7F3D0 100%);
         }
     </style>
 </head>
-<body class="bg-gray-50">
+<body>
 
-    <!-- Page Header -->
-    <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-8 shadow-lg">
-        <div class="max-w-6xl mx-auto px-9">
+    <!-- Page Header with Soft Colors -->
+    <div class="soft-gradient text-gray-800 py-8 shadow-md">
+        <div class="max-w-6xl mx-auto px-6">
             <div class="flex items-center justify-between">
                 <div>
                     <div class="flex items-center gap-3 mb-2">
-                        <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                            <i class="fas fa-users text-2xl"></i>
+                        <div class="w-12 h-12 bg-white/60 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-sm">
+                            <i class="fas fa-users text-2xl text-blue-600"></i>
                         </div>
-                        <h1 class="text-4xl font-bold">User Profile</h1>
+                        <h1 class="text-4xl font-bold text-gray-800">User Profile</h1>
                     </div>
-                    <p class="text-blue-100 text-lg">Manage user accounts and health information</p>
+                    <p class="text-gray-700 text-lg">Manage user accounts and health information</p>
                 </div>
                 <a href="/home" data-link 
-                   class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-lg font-semibold transition-all inline-flex items-center gap-2 backdrop-blur-sm">
+                   class="bg-white/60 backdrop-blur-sm hover:bg-white/80 px-6 py-3 rounded-xl font-semibold transition-all inline-flex items-center gap-2 text-gray-700 shadow-sm">
                     <i class="fas fa-arrow-left"></i>
                     Back to Home
                 </a>
@@ -104,15 +95,15 @@
 
     <div class="max-w-6xl mx-auto px-6 py-8">
 
-        <!-- Add User Form Card -->
-        <div class="bg-white rounded-2xl shadow-lg mb-8 overflow-hidden fade-in">
-            <div class="bg-gradient-to-r from-blue-50 to-green-50 px-8 py-6 border-b border-gray-200">
+        <!-- Add User Form Card with Soft Colors -->
+        <div class="bg-white/70 backdrop-blur-sm rounded-3xl shadow-lg mb-8 overflow-hidden fade-in soft-shadow">
+            <div class="bg-gradient-to-r from-blue-50/80 to-green-50/80 px-8 py-6 border-b border-blue-100/50">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-user-plus text-white"></i>
+                    <div class="w-12 h-12 bg-blue-400/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+                        <i class="fas fa-user-plus text-blue-600"></i>
                     </div>
                     <div>
-                        <h2 class="text-2xl font-bold text-gray-900">Add New User</h2>
+                        <h2 class="text-2xl font-bold text-gray-800">Add New User</h2>
                         <p class="text-gray-600 text-sm">Create a new user profile with health details</p>
                     </div>
                 </div>
@@ -124,68 +115,68 @@
                     <!-- Name Input -->
                     <div>
                         <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">
-                            <i class="fas fa-user text-blue-600 mr-2"></i>Full Name
+                            <i class="fas fa-user text-blue-500 mr-2"></i>Full Name
                         </label>
                         <input 
                             type="text" 
                             id="name" 
                             placeholder="Enter full name" 
                             required 
-                            class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 transition-all"
+                            class="w-full border-2 border-blue-100 rounded-xl px-4 py-3 text-gray-800 placeholder-gray-400 transition-all bg-white/50 focus:bg-white"
                         />
                     </div>
 
                     <!-- Age Input -->
                     <div>
                         <label for="age" class="block text-sm font-semibold text-gray-700 mb-2">
-                            <i class="fas fa-calendar text-green-600 mr-2"></i>Age
+                            <i class="fas fa-calendar text-green-500 mr-2"></i>Age
                         </label>
                         <input 
                             type="number" 
                             id="age" 
                             placeholder="Enter age" 
                             required 
-                            class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 transition-all"
+                            class="w-full border-2 border-green-100 rounded-xl px-4 py-3 text-gray-800 placeholder-gray-400 transition-all bg-white/50 focus:bg-white"
                         />
                     </div>
 
                     <!-- Height Input -->
                     <div>
                         <label for="height" class="block text-sm font-semibold text-gray-700 mb-2">
-                            <i class="fas fa-ruler-vertical text-purple-600 mr-2"></i>Height (cm)
+                            <i class="fas fa-ruler-vertical text-purple-500 mr-2"></i>Height (cm)
                         </label>
                         <input 
                             type="number" 
                             id="height" 
                             placeholder="Enter height in cm" 
                             required 
-                            class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 transition-all"
+                            class="w-full border-2 border-purple-100 rounded-xl px-4 py-3 text-gray-800 placeholder-gray-400 transition-all bg-white/50 focus:bg-white"
                         />
                     </div>
 
                     <!-- Weight Input -->
                     <div>
                         <label for="weight" class="block text-sm font-semibold text-gray-700 mb-2">
-                            <i class="fas fa-weight text-orange-600 mr-2"></i>Weight (kg)
+                            <i class="fas fa-weight text-orange-400 mr-2"></i>Weight (kg)
                         </label>
                         <input 
                             type="number" 
                             id="weight" 
                             placeholder="Enter weight in kg" 
                             required 
-                            class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 transition-all"
+                            class="w-full border-2 border-orange-100 rounded-xl px-4 py-3 text-gray-800 placeholder-gray-400 transition-all bg-white/50 focus:bg-white"
                         />
                     </div>
 
                     <!-- Gender Select -->
                     <div class="md:col-span-2">
                         <label for="gender" class="block text-sm font-semibold text-gray-700 mb-2">
-                            <i class="fas fa-venus-mars text-pink-600 mr-2"></i>Gender
+                            <i class="fas fa-venus-mars text-pink-400 mr-2"></i>Gender
                         </label>
                         <select 
                             id="gender" 
                             required 
-                            class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 text-gray-900 transition-all bg-white"
+                            class="w-full border-2 border-pink-100 rounded-xl px-4 py-3 text-gray-800 transition-all bg-white/50 focus:bg-white"
                         >
                             <option value="">Select Gender</option>
                             <option value="Male">Male</option>
@@ -200,7 +191,7 @@
                     <button 
                         type="submit" 
                         id="submitBtn"
-                        class="btn-primary flex-1 bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-lg font-bold text-lg shadow-lg inline-flex items-center justify-center gap-2"
+                        class="btn-primary flex-1 bg-gradient-to-r from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-600 text-white py-4 rounded-xl font-bold text-lg shadow-md inline-flex items-center justify-center gap-2"
                     >
                         <i class="fas fa-save"></i>
                         Save User
@@ -209,7 +200,7 @@
                     <button 
                         type="button" 
                         id="cancelBtn"
-                        class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-4 rounded-lg font-bold text-lg transition-all inline-flex items-center justify-center gap-2 hidden"
+                        class="flex-1 bg-gray-50 hover:bg-gray-100 text-gray-600 py-4 rounded-xl font-bold text-lg transition-all inline-flex items-center justify-center gap-2 border-2 border-gray-200"
                     >
                         <i class="fas fa-times"></i>
                         Cancel
@@ -218,73 +209,176 @@
             </form>
         </div>
 
-        <!-- Users Table Card -->
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden fade-in">
-            <div class="bg-gradient-to-r from-green-50 to-blue-50 px-8 py-6 border-b border-gray-200">
+        <!-- Users Table Card with Soft Colors -->
+        <div class="bg-white/70 backdrop-blur-sm rounded-3xl shadow-lg overflow-hidden fade-in soft-shadow">
+            <div class="bg-gradient-to-r from-green-50/80 to-blue-50/80 px-8 py-6 border-b border-green-100/50">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-list text-white"></i>
+                        <div class="w-12 h-12 bg-green-400/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+                            <i class="fas fa-list text-green-600"></i>
                         </div>
                         <div>
-                            <h2 class="text-2xl font-bold text-gray-900">All Users</h2>
+                            <h2 class="text-2xl font-bold text-gray-800">All Users</h2>
                             <p class="text-gray-600 text-sm">View and manage all registered users</p>
                         </div>
                     </div>
-                    
+                    <!-- <div class="bg-gradient-to-r from-blue-400 to-green-400 text-white px-5 py-2 rounded-xl font-bold shadow-sm">
+                        <span id="userCount">3</span> Users
+                    </div> -->
                 </div>
             </div>
 
             <div class="p-8">
                 <!-- Loading Spinner -->
-                <div id="loadingSpinner" class="text-center py-12">
-                    <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-200 border-t-blue-600"></div>
+                <div id="loadingSpinner" class="text-center py-12 hidden">
+                    <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-200 border-t-blue-400"></div>
                     <p class="text-gray-500 mt-4 font-medium">Loading users...</p>
                 </div>
 
                 <!-- Users Table Container -->
-                <div id="usersTableContainer" class="hidden">
-                    <div class="overflow-x-auto">
+                <div id="usersTableContainer">
+                    <div class="overflow-x-auto rounded-2xl">
                         <table class="min-w-full">
-                            <thead class="bg-gray-50 border-b-2 border-gray-200">
+                            <thead class="bg-gradient-to-r from-blue-50 to-green-50 border-b-2 border-blue-100">
                                 <tr>
                                     <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
                                         <i class="fas fa-hashtag text-gray-400 mr-2"></i>User ID
                                     </th>
                                     <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
-                                        <i class="fas fa-user text-blue-600 mr-2"></i>Name
+                                        <i class="fas fa-user text-blue-500 mr-2"></i>Name
                                     </th>
                                     <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
-                                        <i class="fas fa-birthday-cake text-green-600 mr-2"></i>Age
+                                        <i class="fas fa-birthday-cake text-green-500 mr-2"></i>Age
                                     </th>
                                     <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
-                                        <i class="fas fa-arrows-alt-v text-purple-600 mr-2"></i>Height
+                                        <i class="fas fa-arrows-alt-v text-purple-500 mr-2"></i>Height
                                     </th>
                                     <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
-                                        <i class="fas fa-weight-hanging text-orange-600 mr-2"></i>Weight
+                                        <i class="fas fa-weight-hanging text-orange-400 mr-2"></i>Weight
                                     </th>
                                     <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
-                                        <i class="fas fa-venus-mars text-pink-600 mr-2"></i>Gender
+                                        <i class="fas fa-venus-mars text-pink-400 mr-2"></i>Gender
                                     </th>
                                     <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
-                                        <i class="fas fa-cog text-gray-600 mr-2"></i>Actions
+                                        <i class="fas fa-cog text-gray-500 mr-2"></i>Actions
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody id="usersTableBody" class="bg-white divide-y divide-gray-100">
-                                <!-- Table rows will be inserted here -->
+                            <tbody id="usersTableBody" class="bg-white/40 divide-y divide-blue-50">
+                                <!-- Sample rows -->
+                                <!-- <tr class="hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-green-50/50 transition-all">
+                                    <td class="px-6 py-4 whitespace-nowrap"> -->
+                                        <!-- <span class="font-bold text-gray-800">1</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-10 h-10 bg-gradient-to-br from-blue-200 to-blue-300 rounded-full flex items-center justify-center shadow-sm">
+                                                <span class="text-blue-700 font-bold">D</span>
+                                            </div>
+                                            <span class="font-semibold text-gray-800">Deepti</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-gray-700 font-medium">20</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-gray-700 font-medium">150 cm</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-gray-700 font-medium">45 kg</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-3 py-1 bg-gradient-to-r from-pink-100 to-pink-200 text-pink-700 rounded-full text-sm font-semibold">
+                                            Female
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex gap-2">
+                                            <button class="bg-gradient-to-r from-amber-300 to-amber-400 hover:from-amber-400 hover:to-amber-500 text-amber-800 px-4 py-2 rounded-lg font-semibold text-sm inline-flex items-center gap-1 transition-all shadow-sm">
+                                                <i class="fas fa-edit"></i>
+                                                Edit
+                                            </button>
+                                            <button class="bg-gradient-to-r from-red-300 to-red-400 hover:from-red-400 hover:to-red-500 text-red-800 px-4 py-2 rounded-lg font-semibold text-sm inline-flex items-center gap-1 transition-all shadow-sm">
+                                                <i class="fas fa-trash"></i>
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-green-50/50 transition-all">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="font-bold text-gray-800">2</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-10 h-10 bg-gradient-to-br from-green-200 to-green-300 rounded-full flex items-center justify-center shadow-sm">
+                                                <span class="text-green-700 font-bold">A</span>
+                                            </div>
+                                            <span class="font-semibold text-gray-800">Aayusmita</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-gray-700 font-medium">20</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-gray-700 font-medium">160 cm</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-gray-700 font-medium">57 kg</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-3 py-1 bg-gradient-to-r from-pink-100 to-pink-200 text-pink-700 rounded-full text-sm font-semibold">
+                                            Female
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex gap-2">
+                                            <button class="bg-gradient-to-r from-amber-300 to-amber-400 hover:from-amber-400 hover:to-amber-500 text-amber-800 px-4 py-2 rounded-lg font-semibold text-sm inline-flex items-center gap-1 transition-all shadow-sm">
+                                                <i class="fas fa-edit"></i>
+                                                Edit
+                                            </button>
+                                            <button class="bg-gradient-to-r from-red-300 to-red-400 hover:from-red-400 hover:to-red-500 text-red-800 px-4 py-2 rounded-lg font-semibold text-sm inline-flex items-center gap-1 transition-all shadow-sm">
+                                                <i class="fas fa-trash"></i>
+                                                Delete
+                                            </button>
+                                        <!-- </div> -->
+                                     <!-- </td> 
+                                </tr> -->
+                                
+                                <!-- <tr class="hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-green-50/50 transition-all">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="font-bold text-gray-800">3</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-10 h-10 bg-gradient-to-br from-purple-200 to-purple-300 rounded-full flex items-center justify-center shadow-sm">
+                                                <span class="text-purple-700 font-bold">P</span>
+                                            </div>
+                                            <span class="font-semibold text-gray-800">Payal</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-gray-700 font-medium">19</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-gray-700 font-medium">165 cm</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-gray-700 font-medium">60 kg</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-3 py-1 bg-gradient-to-r from-pink-100 to-pink-200 text-pink-700 rounded-full text-sm font-semibold">
+                                            Female
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex gap-2">
+                                            <button class="bg-gradient-to-r from-amber-300 to-amber-400 hover:from-amber-400 hover:to-amber-500 text-amber-800 px-4 py-2 rounded-lg font-semibold text-sm inline-flex items-center gap-1 transition-all shadow-sm">
+                                                <i class="fas fa-edit"></i>
+                                                Edit
+                                            </button>
+                                            <button class="bg-gradient-to-r from-red-300 to-red-400 hover:from-red-400 hover:to-red-500 text-red-800 px-4 py-2 rounded-lg font-semibold text-sm inline-flex items-center gap-1 transition-all shadow-sm">
+                                                <i class="fas fa-trash"></i>
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </td> -->
+                                <!-- </tr> -->
                             </tbody>
                         </table>
                     </div>
 
                     <!-- No Users Message -->
                     <div id="noUsers" class="text-center py-12 hidden">
-                        <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-users text-gray-400 text-4xl"></i>
+                        <div class="w-24 h-24 bg-gradient-to-br from-blue-100 to-green-100 rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                            <i class="fas fa-users text-blue-400 text-4xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">No Users Yet</h3>
-                        <p class="text-gray-500 mb-6">Add your first user using the form above</p>
-                        <button onclick="document.getElementById('name').focus()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all inline-flex items-center gap-2">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">No Users Yet</h3>
+                        <p class="text-gray-600 mb-6">Add your first user using the form above</p>
+                        <button onclick="document.getElementById('name').focus()" class="bg-gradient-to-r from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-600 text-white px-6 py-3 rounded-xl font-semibold transition-all inline-flex items-center gap-2 shadow-md">
                             <i class="fas fa-plus"></i>
                             Add First User
                         </button>
@@ -297,7 +391,6 @@
 
     <!-- Alert Container -->
     <div id="alertContainer" class="fixed top-4 right-4 space-y-2 z-50"></div>
-
 
 </body>
 </html>

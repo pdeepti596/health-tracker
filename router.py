@@ -43,17 +43,31 @@ FRONTEND_ROUTES = {
     "/", "/home", "/users", "/activities", "/medical", "/report", 
 }
 
+# def handle_ui_routes(handler, path):
+#     if path in FRONTEND_ROUTES:
+#         serve_static(handler, "frontend/pages/index.html")
+#         return True
+    
+#     if path.startswith("/frontend/"):
+#         serve_static(handler, path.lstrip("/"))
+#         return True
+
+
+#     return False
 def handle_ui_routes(handler, path):
-    if path in FRONTEND_ROUTES:
+    if (
+        path in FRONTEND_ROUTES
+        or path.startswith("/report/")
+    ):
         serve_static(handler, "frontend/pages/index.html")
         return True
-    
+
     if path.startswith("/frontend/"):
         serve_static(handler, path.lstrip("/"))
         return True
 
-
     return False
+
 
 
 

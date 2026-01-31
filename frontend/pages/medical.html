@@ -212,9 +212,6 @@
                             <p class="text-gray-600 text-sm">View and manage patient medical information</p>
                         </div>
                     </div>
-                    <div class="bg-gradient-to-r from-red-400 to-orange-400 text-white px-5 py-2 rounded-xl font-bold shadow-sm">
-                        <span id="recordCount">3</span> Records
-                    </div>
                 </div>
             </div>
 
@@ -249,120 +246,6 @@
                                 </tr>
                             </thead>
                             <tbody id="medicalTableBody" class="bg-white/40 divide-y divide-red-50">
-                                <!-- Sample rows -->
-                                <tr class="hover:bg-gradient-to-r hover:from-red-50/50 hover:to-orange-50/50 transition-all">
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center gap-2">
-                                            <div class="w-8 h-8 bg-gradient-to-br from-blue-200 to-blue-300 rounded-lg flex items-center justify-center shadow-sm">
-                                                <span class="text-blue-700 font-bold text-sm">1</span>
-                                            </div>
-                                            <span class="font-bold text-gray-800">User 1</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-3 py-1 bg-red-100 text-red-700 rounded-lg font-semibold text-sm">
-                                            diabetes
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-lg font-semibold text-sm">
-                                            No
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-3 py-1 bg-orange-100 text-orange-700 rounded-lg font-semibold text-sm">
-                                            No
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex gap-2">
-                                            <button class="bg-gradient-to-r from-amber-300 to-amber-400 hover:from-amber-400 hover:to-amber-500 text-amber-800 px-4 py-2 rounded-lg font-semibold text-sm inline-flex items-center gap-1 transition-all shadow-sm">
-                                                <i class="fas fa-edit"></i>
-                                                Edit
-                                            </button>
-                                            <button class="bg-gradient-to-r from-red-300 to-red-400 hover:from-red-400 hover:to-red-500 text-red-800 px-4 py-2 rounded-lg font-semibold text-sm inline-flex items-center gap-1 transition-all shadow-sm">
-                                                <i class="fas fa-trash"></i>
-                                                Delete
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                
-                                <tr class="hover:bg-gradient-to-r hover:from-red-50/50 hover:to-orange-50/50 transition-all">
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center gap-2">
-                                            <div class="w-8 h-8 bg-gradient-to-br from-green-200 to-green-300 rounded-lg flex items-center justify-center shadow-sm">
-                                                <span class="text-green-700 font-bold text-sm">2</span>
-                                            </div>
-                                            <span class="font-bold text-gray-800">User 2</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-3 py-1 bg-red-100 text-red-700 rounded-lg font-semibold text-sm">
-                                            BP
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-lg font-semibold text-sm">
-                                            infection
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-3 py-1 bg-orange-100 text-orange-700 rounded-lg font-semibold text-sm">
-                                            skin disease
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex gap-2">
-                                            <button class="bg-gradient-to-r from-amber-300 to-amber-400 hover:from-amber-400 hover:to-amber-500 text-amber-800 px-4 py-2 rounded-lg font-semibold text-sm inline-flex items-center gap-1 transition-all shadow-sm">
-                                                <i class="fas fa-edit"></i>
-                                                Edit
-                                            </button>
-                                            <button class="bg-gradient-to-r from-red-300 to-red-400 hover:from-red-400 hover:to-red-500 text-red-800 px-4 py-2 rounded-lg font-semibold text-sm inline-flex items-center gap-1 transition-all shadow-sm">
-                                                <i class="fas fa-trash"></i>
-                                                Delete
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                
-                                <tr class="hover:bg-gradient-to-r hover:from-red-50/50 hover:to-orange-50/50 transition-all">
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center gap-2">
-                                            <div class="w-8 h-8 bg-gradient-to-br from-orange-200 to-orange-300 rounded-lg flex items-center justify-center shadow-sm">
-                                                <span class="text-orange-700 font-bold text-sm">5</span>
-                                            </div>
-                                            <span class="font-bold text-gray-800">User 5</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-3 py-1 bg-red-100 text-red-700 rounded-lg font-semibold text-sm">
-                                            uikg
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-lg font-semibold text-sm">
-                                            kj
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-3 py-1 bg-orange-100 text-orange-700 rounded-lg font-semibold text-sm">
-                                            kjb
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex gap-2">
-                                            <button class="bg-gradient-to-r from-amber-300 to-amber-400 hover:from-amber-400 hover:to-amber-500 text-amber-800 px-4 py-2 rounded-lg font-semibold text-sm inline-flex items-center gap-1 transition-all shadow-sm">
-                                                <i class="fas fa-edit"></i>
-                                                Edit
-                                            </button>
-                                            <button class="bg-gradient-to-r from-red-300 to-red-400 hover:from-red-400 hover:to-red-500 text-red-800 px-4 py-2 rounded-lg font-semibold text-sm inline-flex items-center gap-1 transition-all shadow-sm">
-                                                <i class="fas fa-trash"></i>
-                                                Delete
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>

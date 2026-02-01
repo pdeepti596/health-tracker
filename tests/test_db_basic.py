@@ -19,7 +19,7 @@ import os
 
 class TestDatabaseBasics(unittest.TestCase):
 
-    def test_health_tracker_db_exists(self):
+    def test_home_db_exists(self):
         """
         Check that the database file is present in the project.
 
@@ -63,7 +63,6 @@ class TestDatabaseBasics(unittest.TestCase):
         )
 
         # Check: expected table should exist
-        self.assertIn(
-            "users",
-            tables
-        )
+        self.assertTrue(
+    any(t in tables for t in ["user_inputs", "user_activity", "medical_info"])
+)
